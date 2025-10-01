@@ -1,0 +1,66 @@
+Alice has an umbrella and a raincoat so she is dry.
+Alice has an umbrella and a torn raincoat so she is dry.
+Alice goes out with her umbrella so she remains dry
+Alice goes out without her umbrella so she remains dry.
+If Alice has an umbrella, then she will be dry.
+If Alice has a skirt, then she will be dry.
+The supporting cable snapped and the truck was overloaded so the bridge collapsed.
+The supporting cable snapped and the truck was light so the bridge collapsed.
+If the cable is snapped, then the bridge will collapse.
+If the cable is strong, then the bridge will collapse.
+Alice was ill and distracted so she performed poorly.
+Alice was ill and focused so she performed poorly.
+If Alice is ill, then she will perform poorly.
+If Alice is well, then she will perform poorly.
+There was a technical malfunction and a storm so the flight was cancelled.
+There was a technical malfunction and fair weather so the flight was cancelled.
+If there is bad weather, then the flight will be cancelled.
+If there is fair weather, then the flight will be cancelled.
+Alice was prescribed antibiotics and her immune system was strong so she recovered.
+Alice was prescribed antibiotics and her immune system was weak so she recovered.
+If Alice is given antibiotics, then she will recover.
+If Alice is given poison, then she will recover.
+A tree has fallen onto a car, so the car is crushed.
+A leaf has fallen onto a car, so the car is crushed.
+If a tree falls onto a car, then the car will be crushed.
+If a leaf falls onto a car, then the car will be crushed.
+Alice fed the fire so the fire became larger.
+Alice extinguished the fire so the fire became larger.
+If Alice feeds the fire, then the fire will become larger.
+If Alice extinguishes the fire, then the fire will become larger.
+Lightning struck a tree so it burned.
+Marbles struck a tree so it burned.
+If lightning strikes a tree, then it will burn.
+If marbles strike a tree, then it will burn.
+Alice dropped the glass so it shattered.
+Alice held the glass so it shattered.
+If Alice drops the glass, then it will shatter.
+If Alice holds the glass, then it will shatter.
+The doctor diagnosed the illness early so the patient recovered.
+The doctor diagnosed the illness late so the patient recovered.
+If the doctor diagnoses the illness early, then the patient will recover.
+If the doctor diagnoses the illness late, then the patient will recover.
+There was a storm so the river flooded.
+There was a fire so the river flooded.
+If there is a storm, then the river will flood.
+If there is a fire, then the river will flood.
+The instructions were clear so the task was easy.
+The instructions were unclear so the task was easy.
+If the instructions are clear, then the task will be easy.
+If the instructions are unclear, then the task will be easy.
+The driver had quick reflexes so a collision was avoided.
+The driver had slow reflexes so a collision was avoided.
+If the driver has quick reflexes, then a collision will be avoided.
+If the driver has slow reflexes, then a collision will be avoided.
+Alice neglected the plants so they wilted.
+Alice watered the plants so they wilted.
+If Alice neglects the plants, then they will wilt.
+If Alice waters the plants, then they will wilt.
+The company had poor cybersecurity, so they were hacked.
+The company had strong cybersecurity, so they were hacked.
+If the company has poor cybersecurity, then they will be hacked.
+If the company has strong cybersecurity, then they will be hacked.
+The team won the championship because they trained hard.
+The team lost the championship because they trained hard.
+If the team trains hard, then they will win.
+If the team trains infrequently, then they will win.
