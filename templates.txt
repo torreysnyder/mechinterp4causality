@@ -50,7 +50,7 @@ If the instructions are clear, then the task will be easy.
 If the instructions are unclear, then the task will be easy.
 The driver had quick reflexes so a collision was avoided.
 The driver had slow reflexes so a collision was avoided.
-If the driver has quick reflexes, then a collision will be avoided.
+If the driver has fast reflexes, then a collision will be avoided.
 If the driver has slow reflexes, then a collision will be avoided.
 Alice neglected the plants so they wilted.
 Alice watered the plants so they wilted.
