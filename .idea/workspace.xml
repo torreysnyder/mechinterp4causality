@@ -5,44 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3acec453-790b-4627-9648-0111cc4dc8de" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/mechinterp.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/activation_cache.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/attention.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/embed.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/grouped_query_attention.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/layer_norm.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/layer_norm_pre.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/mlps/can_be_used_as_mlp.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/mlps/gated_mlp.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/mlps/gated_mlp_4bit.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/mlps/mlp.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/mlps/moe.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/pos_embed.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/rms_norm.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/rms_norm_pre.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/transformer_block.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/unembed.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factored_matrix.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factories/activation_function_factory.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factories/mlp_factory.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hook_points.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hooked_tranformer_config.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hooked_transformer.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/loading_from_pretrained.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/past_key_value_caching.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/patching.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pretrained_weight_conversions_gpt2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utilities/activation_functions.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utilities/addmm.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utilities/attention.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utilities/devices.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/activation_patching.py" beforeDir="false" afterPath="$PROJECT_DIR$/activation_patching.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/causal_trace.py" beforeDir="false" afterPath="$PROJECT_DIR$/causal_trace.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utilities/nethook.py" beforeDir="false" afterPath="$PROJECT_DIR$/utilities/nethook.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,9 +36,11 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Python.activation_patching.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/torre/PycharmProjects/mechinterp/plots&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -85,6 +53,36 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\torre\PycharmProjects\mechinterp\components" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="activation_patching" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="mechinterp" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/activation_patching.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.activation_patching" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -110,11 +108,16 @@
       <workItem from="1759134726224" duration="13480000" />
       <workItem from="1759161033059" duration="2403000" />
       <workItem from="1759221095266" duration="24868000" />
-      <workItem from="1759319215010" duration="5689000" />
+      <workItem from="1759319215010" duration="10466000" />
+      <workItem from="1759392451352" duration="10395000" />
+      <workItem from="1759477066701" duration="2591000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/mechinterp$activation_patching.coverage" NAME="activation_patching Coverage Results" MODIFIED="1759478631269" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
