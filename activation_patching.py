@@ -2,6 +2,8 @@ import os, re, json
 import torch, numpy
 from collections import defaultdict
 from utilities import nethook
+from pathlib import Path
+from tqdm import tqdm
 
 from causal_trace import (
     ModelAndTokenizer,
@@ -27,11 +29,21 @@ mt = ModelAndTokenizer(
     torch_dtype=torch.float16,
 )
 
-result, logits= predict_token(
-    mt,
-    ["If there is a storm, then the river will", "If there is a fire, then the river will"],
-    return_logits_for=["flood"])
-print(logits)
+def load_template_pairs(path):
+    """
+    Reads a template file where each *pair* of lines forms:
+      line 1 -> clean prompt
+      line 2 -> corrupted prompt (4th token perturbed)
+    Returns: list of (clean, corrupted) tuples.
+    Ignores blank lines.
+    """
+    lines = [ln.strip() for ln in Path(path).read_text(encoding="utf-8").splitlines() if ln.strip()]
+    if len(lines) % 2 != 0:
+        raise ValueError(f"Expected an even number of lines in {path}, got {len(lines)}.")
+    pairs = []
+    for i in range(0, len(lines), 2):
+        pairs.append((lines[i], lines[i+1]))
+    return pairs
 
 
 def trace_with_patch(
@@ -372,32 +384,63 @@ def plot_hidden_flow(
     plot_trace_heatmap(result, savepdf, modelname=modelname)
 
 
-def plot_all_flow(mt, prompt, subject=None, noise=0.1, modelname=None, token_substitutions=None):
+def plot_all_flow(mt, prompt, subject=None, noise=0.1, modelname=None,
+                  token_substitutions=None, save_prefix=None):
     """
     Plot hidden flow for all layer types (all, mlp, attn).
 
-    Args:
-        mt: ModelAndTokenizer instance
-        prompt: Input prompt
-        subject: Subject to corrupt (for noise-based) or None
-        noise: Noise level
-        modelname: Model name for plot title
-        token_substitutions: List of (old_token_id, new_token_id) tuples for token substitution
+    If save_prefix is provided, files are saved as:
+      {save_prefix}_all.pdf, {save_prefix}_mlp.pdf, {save_prefix}_attn.pdf
     """
-    for kind in [None, "mlp", "attn"]:
+    for kind, suffix in [(None, "all"), ("mlp", "mlp"), ("attn", "attn")]:
+        savepdf = f"{save_prefix}_{suffix}.pdf" if save_prefix else None
         plot_hidden_flow(
             mt, prompt, subject, modelname=modelname, noise=noise, kind=kind,
-            token_substitutions=token_substitutions
+            token_substitutions=token_substitutions, savepdf=savepdf
         )
 
+if __name__ == "__main__":
+    # Configure model
+    model_name = "gpt2"  # keep as-is or change
+    mt = ModelAndTokenizer(model_name, torch_dtype=torch.float16)
 
-# Example usage with noise-based corruption (original)
-#plot_all_flow(mt, "The Space Needle is in the city of", noise=noise_level)
-#for knowledge in knowns[:5]:
-#    plot_all_flow(mt, knowledge["prompt"], knowledge["subject"], noise=noise_level)
+    # Load clean/corrupted prompt pairs
+    template_path = "templates.txt"   # adjust if needed
+    pairs = load_template_pairs(template_path)
 
-# Example usage with token substitution (new)
-with_id = mt.tokenizer.encode(" storm", add_special_tokens=False)[0]
-without_id = mt.tokenizer.encode(" fire", add_special_tokens=False)[0]
-plot_all_flow(mt, "If there is a storm, then the river will",
-               token_substitutions=[(with_id, without_id)])
+    # Output directory for PDFs
+    outdir = Path("plots_from_templates")
+    outdir.mkdir(parents=True, exist_ok=True)
+
+    # Process each pair
+    for idx, (clean_prompt, corrupted_prompt) in enumerate(tqdm(pairs, desc="Templates")):
+        # Tokenize both prompts (no special tokens)
+        clean_ids = mt.tokenizer.encode(clean_prompt, add_special_tokens=False)
+        bad_ids   = mt.tokenizer.encode(corrupted_prompt, add_special_tokens=False)
+
+        # Safety checks
+        if len(clean_ids) < 4 or len(bad_ids) < 4:
+            print(f"[warn] Skipping #{idx:03d}: fewer than 4 tokens after tokenization.")
+            continue
+
+        # We assume the 4th token (index 3) is the perturbed one by construction.
+        # Create a token_substitutions spec that swaps the 4th token.
+        old_token_id = clean_ids[3]
+        new_token_id = bad_ids[3]
+
+        # Build a readable prefix for saved plots
+        # e.g., 000_if_alice_is_cold...
+        short_clean = re.sub(r"\W+", "_", clean_prompt.lower()).strip("_")
+        short_clean = (short_clean[:60] + "…") if len(short_clean) > 60 else short_clean
+        save_prefix = str(outdir / f"{idx:03d}_{short_clean}")
+
+        # Run plots: clean prompt + token substitution to the corrupted 4th token
+        plot_all_flow(
+            mt,
+            clean_prompt,
+            token_substitutions=[(old_token_id, new_token_id)],
+            modelname=model_name,
+            save_prefix=save_prefix,
+        )
+
+    print(f"Done. PDFs saved in: {outdir.resolve()}")

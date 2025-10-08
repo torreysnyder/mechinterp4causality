@@ -4,11 +4,61 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3acec453-790b-4627-9648-0111cc4dc8de" name="Changes" comment="">
+    <list default="true" id="3acec453-790b-4627-9648-0111cc4dc8de" name="Changes" comment="update activation patching">
+      <change afterPath="$PROJECT_DIR$/condititional_delimiter_attention.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_templates/000_if_alice_is_cold_and_it_is_raining_then_she_will_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_templates/000_if_alice_is_cold_and_it_is_raining_then_she_will_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_templates/000_if_alice_is_cold_and_it_is_raining_then_she_will_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_templates/001_if_alice_is_mad_and_it_is_wrong_then_she_will_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_templates/001_if_alice_is_mad_and_it_is_wrong_then_she_will_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_templates/001_if_alice_is_mad_and_it_is_wrong_then_she_will_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_templates/002_if_alice_is_happy_and_it_is_pretty_then_she_will_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_templates/002_if_alice_is_happy_and_it_is_pretty_then_she_will_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_templates/002_if_alice_is_happy_and_it_is_pretty_then_she_will_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_templates/003_if_alice_is_ill_and_it_is_cold_then_she_will_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_templates/003_if_alice_is_ill_and_it_is_cold_then_she_will_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_templates/003_if_alice_is_ill_and_it_is_cold_then_she_will_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_templates/004_if_alice_is_mad_and_it_is_late_then_she_will_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_templates/004_if_alice_is_mad_and_it_is_late_then_she_will_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_templates/004_if_alice_is_mad_and_it_is_late_then_she_will_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_templates/005_if_alice_is_driven_and_it_is_easy_then_she_will_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_templates/005_if_alice_is_driven_and_it_is_easy_then_she_will_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_templates/005_if_alice_is_driven_and_it_is_easy_then_she_will_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_templates/006_if_alice_is_driven_and_it_is_important_then_she_will_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_templates/006_if_alice_is_driven_and_it_is_important_then_she_will_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_templates/006_if_alice_is_driven_and_it_is_important_then_she_will_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_templates/007_if_alice_is_involved_and_it_is_wrong_then_she_will_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_templates/007_if_alice_is_involved_and_it_is_wrong_then_she_will_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_templates/007_if_alice_is_involved_and_it_is_wrong_then_she_will_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_templates/008_if_alice_is_happy_and_it_is_fair_then_she_will_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_templates/008_if_alice_is_happy_and_it_is_fair_then_she_will_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_templates/008_if_alice_is_happy_and_it_is_fair_then_she_will_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_templates/009_if_alice_is_ill_and_it_is_expensive_then_she_will_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_templates/009_if_alice_is_ill_and_it_is_expensive_then_she_will_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_templates/009_if_alice_is_ill_and_it_is_expensive_then_she_will_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_templates/010_if_alice_is_content_and_it_is_pleasant_then_she_will_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_templates/010_if_alice_is_content_and_it_is_pleasant_then_she_will_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_templates/010_if_alice_is_content_and_it_is_pleasant_then_she_will_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_templates/011_if_alice_is_mad_and_it_is_wrong_then_she_will_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_templates/011_if_alice_is_mad_and_it_is_wrong_then_she_will_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_templates/011_if_alice_is_mad_and_it_is_wrong_then_she_will_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_templates/012_if_alice_is_ill_and_it_is_late_then_she_will_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_templates/012_if_alice_is_ill_and_it_is_late_then_she_will_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_templates/012_if_alice_is_ill_and_it_is_late_then_she_will_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_templates/013_if_alice_is_alert_and_it_is_interesting_then_she_will_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_templates/013_if_alice_is_alert_and_it_is_interesting_then_she_will_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_templates/013_if_alice_is_alert_and_it_is_interesting_then_she_will_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_templates/014_if_alice_is_interested_and_it_is_odd_then_she_will_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_templates/014_if_alice_is_interested_and_it_is_odd_then_she_will_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_templates/014_if_alice_is_interested_and_it_is_odd_then_she_will_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/conditional_attention_if.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/conditional_attention_then.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/conditional_causal_attention.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tokenizer_check.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/activation_patching.py" beforeDir="false" afterPath="$PROJECT_DIR$/activation_patching.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/causal_trace.py" beforeDir="false" afterPath="$PROJECT_DIR$/causal_trace.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utilities/nethook.py" beforeDir="false" afterPath="$PROJECT_DIR$/utilities/nethook.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates.txt" beforeDir="false" afterPath="$PROJECT_DIR$/templates.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,27 +84,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.activation_patching.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/torre/PycharmProjects/mechinterp/plots&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.activation_patching.executor": "Run",
+    "Python.condititional_delimiter_attention.executor": "Run",
+    "Python.tokenizer_check.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/torre/PycharmProjects/mechinterp/plots",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\torre\PycharmProjects\mechinterp\components" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.activation_patching">
     <configuration name="activation_patching" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="mechinterp" />
       <option name="ENV_FILES" value="" />
@@ -78,9 +130,57 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="condititional_delimiter_attention" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="mechinterp" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/condititional_delimiter_attention.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="tokenizer_check" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="mechinterp" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tokenizer_check.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Python.activation_patching" />
+        <item itemvalue="Python.tokenizer_check" />
+        <item itemvalue="Python.condititional_delimiter_attention" />
       </list>
     </recent_temporary>
   </component>
@@ -110,14 +210,30 @@
       <workItem from="1759221095266" duration="24868000" />
       <workItem from="1759319215010" duration="10466000" />
       <workItem from="1759392451352" duration="10395000" />
-      <workItem from="1759477066701" duration="2591000" />
+      <workItem from="1759477066701" duration="5974000" />
+      <workItem from="1759913571073" duration="13928000" />
     </task>
+    <task id="LOCAL-00001" summary="update activation patching">
+      <option name="closed" value="true" />
+      <created>1759479734480</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1759479734480</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="update activation patching" />
+    <option name="LAST_COMMIT_MESSAGE" value="update activation patching" />
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/mechinterp$activation_patching.coverage" NAME="activation_patching Coverage Results" MODIFIED="1759478631269" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/mechinterp$tokenizer_check.coverage" NAME="tokenizer_check Coverage Results" MODIFIED="1759933262830" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/mechinterp$activation_patching.coverage" NAME="activation_patching Coverage Results" MODIFIED="1759936405776" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/mechinterp$condititional_delimiter_attention.coverage" NAME="condititional_delimiter_attention Coverage Results" MODIFIED="1759919011489" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
