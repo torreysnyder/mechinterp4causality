@@ -1,9 +1,12 @@
 import os, re, json
-import torch, numpy
+import torch
+import numpy as np
 from collections import defaultdict
 from utilities import nethook
 from pathlib import Path
 from tqdm import tqdm
+import matplotlib.pyplot as plt
+from typing import Union, List, Tuple, Dict
 
 from causal_trace import (
     ModelAndTokenizer,
@@ -78,7 +81,7 @@ def trace_with_patch(
         probs: Softmax probabilities for answer tokens
         all_traced: (optional) Stacked activations if trace_layers is not None
     """
-    prng = numpy.random.RandomState(1)  # For reproducibility, use pseudorandom noise
+    prng = np.random.RandomState(1)  # For reproducibility, use pseudorandom noise
     patch_spec = defaultdict(list)
     for t, l in states_to_patch:
         patch_spec[l].append(t)
@@ -215,33 +218,65 @@ def calculate_hidden_flow(
         noise: Noise level for corruption (ignored for token substitution)
         window: Window size for windowed tracing
         kind: Type of layers to trace ('mlp', 'attn', or None for all)
-        token_substitutions: List of (old_token_id, new_token_id) tuples for token substitution.
-                           If provided, uses token substitution instead of noise-based corruption.
+        token_substitutions:
+            - None  → use noise-based corruption over `subject`
+            - List of tuples for token substitution. Each tuple can be either:
+                (position, new_token_id)       # position is an int index in the sequence
+             or (old_token_id, new_token_id)   # old_token_id will be searched in the input ids
+
+    Returns:
+        dict with keys:
+            scores:           [L x T] tensor (importance by layer/token)
+            low_score:        probability under corruption/substitution (float)
+            high_score:       base probability under clean input (float)
+            input_ids:        tensor of token ids for the clean prompt
+            input_tokens:     list of decoded token strings
+            subject_range:    (start, end) indices to highlight
+            answer:           decoded predicted answer token
+            window:           window size used for tracing
+            kind:             '' | 'mlp' | 'attn'
     """
     # Create inputs based on corruption method
     if token_substitutions is not None:
-        # Token substitution: single input
+        # Token substitution: single, clean input (the actual substitution
+        # is applied inside trace_with_patch)
         inp = make_inputs(mt.tokenizer, [prompt])
         tokens_to_mix = None
+        e_range = None
     else:
-        # Noise-based: multiple samples
+        # Noise-based: multiple samples (first is clean, rest are corrupted)
         inp = make_inputs(mt.tokenizer, [prompt] * (samples + 1))
         e_range = find_token_range(mt.tokenizer, inp["input_ids"][0], subject)
         tokens_to_mix = e_range
 
+    # Base (clean) prediction
     with torch.no_grad():
         answer_t, base_score = [d[0] for d in predict_from_input(mt.model, inp)]
     [answer] = decode_tokens(mt.tokenizer, [answer_t])
 
+    # Probability under corruption/substitution with no restoration
     low_score = trace_with_patch(
-        mt.model, inp, [], answer_t, tokens_to_mix, noise=noise,
-        token_substitutions=token_substitutions, tokenizer=mt.tokenizer
+        mt.model,
+        inp,
+        [],                               # no states restored
+        answer_t,
+        tokens_to_mix,
+        noise=noise,
+        token_substitutions=token_substitutions,
+        tokenizer=mt.tokenizer,
     ).item()
 
+    # Full importance sweep
     if not kind:
         differences = trace_important_states(
-            mt.model, mt.num_layers, inp, tokens_to_mix, answer_t,
-            noise=noise, token_substitutions=token_substitutions, tokenizer=mt.tokenizer
+            mt.model,
+            mt.num_layers,
+            inp,
+            tokens_to_mix,
+            answer_t,
+            noise=noise,
+            token_substitutions=token_substitutions,
+            tokenizer=mt.tokenizer,
         )
     else:
         differences = trace_important_window(
@@ -254,12 +289,33 @@ def calculate_hidden_flow(
             window=window,
             kind=kind,
             token_substitutions=token_substitutions,
-            tokenizer=mt.tokenizer
+            tokenizer=mt.tokenizer,
         )
     differences = differences.detach().cpu()
 
-    # Give an empty highlight range when using token substitution
-    subject_range = e_range if token_substitutions is None else (0, 0)
+    # Highlight range for the plot:
+    # - For noise: use the subject span e_range
+    # - For token substitution: try to infer the position of the changed token
+    if token_substitutions is None:
+        subject_range = e_range
+    else:
+        pos_to_highlight = None
+        if token_substitutions:
+            first = token_substitutions[0]
+            # Accept either (position, new_id) or (old_id, new_id)
+            if isinstance(first[0], int):
+                # Position provided directly
+                if 0 <= first[0] < inp["input_ids"].shape[1]:
+                    pos_to_highlight = int(first[0])
+            else:
+                # Old token id provided: find it in the clean input_ids
+                old_id = first[0]
+                seq = inp["input_ids"][0].tolist()
+                try:
+                    pos_to_highlight = seq.index(old_id)
+                except ValueError:
+                    pos_to_highlight = None  # couldn't find it; leave empty highlight
+        subject_range = (pos_to_highlight, pos_to_highlight + 1) if pos_to_highlight is not None else (0, 0)
 
     return dict(
         scores=differences,
@@ -272,6 +328,200 @@ def calculate_hidden_flow(
         window=window,
         kind=kind or "",
     )
+
+def _find_first_diff_pos(tokenizer, clean_prompt: str, corrupted_prompt: str):
+    """Return (pos, clean_ids, bad_ids) where pos is the first differing token position (or None)."""
+    clean_ids = tokenizer.encode(clean_prompt, add_special_tokens=False)
+    bad_ids   = tokenizer.encode(corrupted_prompt, add_special_tokens=False)
+    pos = None
+    for i, (a, b) in enumerate(zip(clean_ids, bad_ids)):
+        if a != b:
+            pos = i
+            break
+    return pos, clean_ids, bad_ids
+
+
+def _nanpad_to_width(a: np.ndarray, width: int):
+    """Pad a 2D array [L, T] with NaNs on the right to width T=width."""
+    L, T = a.shape
+    if T == width:
+        return a
+    out = np.full((L, width), np.nan, dtype=float)
+    out[:, :T] = a
+    return out
+
+
+def _save_avg_heatmap(avg_matrix: np.ndarray, title: str, outfile: Path):
+    """Save an average flow heatmap to file."""
+    plt.figure(figsize=(10, 5))
+    plt.imshow(avg_matrix, aspect='auto', origin='lower')
+    plt.colorbar(label='Avg restoration Δ (prob)')
+    plt.xlabel('Token position (index)')
+    plt.ylabel('Layer')
+    plt.title(title)
+    outfile.parent.mkdir(parents=True, exist_ok=True)
+    plt.tight_layout()
+    plt.savefig(str(outfile), dpi=200)
+    plt.close()
+
+
+def load_so_templates(path: Union[str, Path]) -> List[Tuple[str, str]]:
+    """
+    Reads a templates file where:
+      line 1 = clean prompt
+      line 2 = corrupted prompt
+    and repeats per pair.
+    Returns list of (clean, corrupted).
+    """
+    pairs = []
+    with open(path, 'r', encoding='utf-8') as f:
+        lines = [ln.strip() for ln in f.readlines()]
+    for i in range(0, len(lines), 2):
+        if i + 1 < len(lines):
+            clean = lines[i]
+            bad   = lines[i + 1]
+            if clean and bad:
+                pairs.append((clean, bad))
+    return pairs
+
+
+# ---- Main aggregator ---------------------------------------------------------
+
+def plot_average_flows_over_templates(
+    mt,
+    templates_file: Union[str, Path],
+    samples: int = 10,
+    noise: float = 0.1,
+    window: int = 10,
+    save_dir: Union[str, Path] = "plots_avg",
+    modelname: str = None,
+) -> Dict[str, np.ndarray]:
+    """
+    Generates THREE average plots across all templates:
+      1) Hidden state (all)
+      2) MLP-only
+      3) Attention-only
+
+    - Detects the correct substitution position via first token diff under BPE.
+    - Skips templates where there is no 1↔1 token difference.
+    - Handles variable sequence lengths by NaN-padding before averaging.
+
+    Saves:
+      <save_dir>/avg_hidden.png
+      <save_dir>/avg_mlp.png
+      <save_dir>/avg_attn.png
+
+    Returns:
+      dict with numpy arrays for each average: {'hidden': [L,T], 'mlp': [L,T], 'attn': [L,T]}
+    """
+    save_dir = Path(save_dir)
+    pairs = load_so_templates(templates_file)
+
+    hidden_mats, mlp_mats, attn_mats = [], [], []
+    max_T_hidden = max_T_mlp = max_T_attn = 0
+    L_seen = None
+
+    for idx, (clean_prompt, corrupted_prompt) in enumerate(pairs):
+        pos, clean_ids, bad_ids = _find_first_diff_pos(mt.tokenizer, clean_prompt, corrupted_prompt)
+
+        if pos is None or pos >= len(clean_ids) or pos >= len(bad_ids):
+            print("[avg] Skipping pair #%03d: no single-position token diff after BPE." % idx)
+            continue
+
+        substitution = [(pos, bad_ids[pos])]
+
+        # Hidden / all
+        try:
+            res_hidden = calculate_hidden_flow(
+                mt,
+                prompt=clean_prompt,
+                subject=None,
+                samples=samples,
+                noise=noise,
+                window=window,
+                kind=None,
+                token_substitutions=substitution,
+            )
+            H = res_hidden["scores"].detach().cpu().numpy()
+            if L_seen is None:
+                L_seen = H.shape[0]
+            max_T_hidden = max(max_T_hidden, H.shape[1])
+            hidden_mats.append(H)
+        except Exception as e:
+            print("[avg] Hidden flow failed on pair #%03d: %s" % (idx, e))
+
+        # MLP
+        try:
+            res_mlp = calculate_hidden_flow(
+                mt,
+                prompt=clean_prompt,
+                subject=None,
+                samples=samples,
+                noise=noise,
+                window=window,
+                kind="mlp",
+                token_substitutions=substitution,
+            )
+            M = res_mlp["scores"].detach().cpu().numpy()
+            max_T_mlp = max(max_T_mlp, M.shape[1])
+            mlp_mats.append(M)
+        except Exception as e:
+            print("[avg] MLP flow failed on pair #%03d: %s" % (idx, e))
+
+        # Attention
+        try:
+            res_attn = calculate_hidden_flow(
+                mt,
+                prompt=clean_prompt,
+                subject=None,
+                samples=samples,
+                noise=noise,
+                window=window,
+                kind="attn",
+                token_substitutions=substitution,
+            )
+            A = res_attn["scores"].detach().cpu().numpy()
+            max_T_attn = max(max_T_attn, A.shape[1])
+            attn_mats.append(A)
+        except Exception as e:
+            print("[avg] Attn flow failed on pair #%03d: %s" % (idx, e))
+
+    if not hidden_mats and not mlp_mats and not attn_mats:
+        raise RuntimeError("No valid templates to average. Check your templates file or tokenization diffs.")
+
+    # Pad to common widths and average with NaN-ignoring mean
+    def _avg_stack(mats, width):
+        if not mats:
+            return None
+        padded = [_nanpad_to_width(m.astype(float), width) for m in mats]
+        stack = np.stack(padded, axis=0)
+        with np.errstate(invalid="ignore"):
+            avg = np.nanmean(stack, axis=0)
+        avg = np.nan_to_num(avg, nan=0.0)
+        return avg
+
+    avg_hidden = _avg_stack(hidden_mats, max_T_hidden)
+    avg_mlp    = _avg_stack(mlp_mats,    max_T_mlp)
+    avg_attn   = _avg_stack(attn_mats,   max_T_attn)
+
+    # Save plots
+    model_tag = " (%s)" % modelname if modelname else ""
+    if avg_hidden is not None:
+        _save_avg_heatmap(avg_hidden, "Average Hidden Flow%s" % model_tag, save_dir / "avg_hidden.png")
+    if avg_mlp is not None:
+        _save_avg_heatmap(avg_mlp, "Average MLP Flow%s" % model_tag, save_dir / "avg_mlp.png")
+    if avg_attn is not None:
+        _save_avg_heatmap(avg_attn, "Average Attention Flow%s" % model_tag, save_dir / "avg_attn.png")
+    # Also save per-layer line plots (mean over token positions)
+    if avg_hidden is not None:
+        _save_per_layer_line(avg_hidden, "Average Hidden Flow — Per Layer%s" % model_tag, save_dir / "avg_hidden_per_layer.png")
+    if avg_mlp is not None:
+        _save_per_layer_line(avg_mlp,    "Average MLP Flow — Per Layer%s" % model_tag,    save_dir / "avg_mlp_per_layer.png")
+    if avg_attn is not None:
+        _save_per_layer_line(avg_attn,   "Average Attention Flow — Per Layer%s" % model_tag, save_dir / "avg_attn_per_layer.png")
+
+
+    return {"hidden": avg_hidden, "mlp": avg_mlp, "attn": avg_attn}
 
 
 def trace_important_states(model, num_layers, inp, e_range, answer_t, noise=0.1,
@@ -399,17 +649,37 @@ def plot_all_flow(mt, prompt, subject=None, noise=0.1, modelname=None,
             token_substitutions=token_substitutions, savepdf=savepdf
         )
 
+def _save_per_layer_line(avg_matrix: np.ndarray, title: str, outfile: Path):
+    """
+    Plot mean importance per layer (averaged over token positions) and save.
+    """
+    if avg_matrix is None:
+        return
+    # mean over token dimension (axis=1 → per-layer)
+    y = np.nanmean(avg_matrix, axis=1)
+    x = np.arange(len(y))
+
+    plt.figure(figsize=(8, 4))
+    plt.plot(x, y, marker='o')
+    plt.xlabel('Layer')
+    plt.ylabel('Mean restoration Δ (prob)')
+    plt.title(title)
+    outfile.parent.mkdir(parents=True, exist_ok=True)
+    plt.tight_layout()
+    plt.savefig(str(outfile), dpi=200)
+    plt.close()
+
 if __name__ == "__main__":
     # Configure model
     model_name = "gpt2"  # keep as-is or change
     mt = ModelAndTokenizer(model_name, torch_dtype=torch.float16)
 
     # Load clean/corrupted prompt pairs
-    template_path = "templates.txt"   # adjust if needed
+    template_path = "lee_templates.txt"   # adjust if needed
     pairs = load_template_pairs(template_path)
 
     # Output directory for PDFs
-    outdir = Path("plots_from_templates")
+    outdir = Path("plots_from_lee_templates")
     outdir.mkdir(parents=True, exist_ok=True)
 
     # Process each pair
@@ -418,29 +688,46 @@ if __name__ == "__main__":
         clean_ids = mt.tokenizer.encode(clean_prompt, add_special_tokens=False)
         bad_ids   = mt.tokenizer.encode(corrupted_prompt, add_special_tokens=False)
 
+        # Find the first differing token position
+        pos = None
+        for i, (a, b) in enumerate(zip(clean_ids, bad_ids)):
+            if a != b:
+                pos = i
+                break
+
         # Safety checks
-        if len(clean_ids) < 4 or len(bad_ids) < 4:
-            print(f"[warn] Skipping #{idx:03d}: fewer than 4 tokens after tokenization.")
+        if pos is None:
+            print(f"[warn] Skipping #{idx:03d}: no token-level difference after BPE tokenization.")
             continue
 
-        # We assume the 4th token (index 3) is the perturbed one by construction.
-        # Create a token_substitutions spec that swaps the 4th token.
-        old_token_id = clean_ids[3]
-        new_token_id = bad_ids[3]
+        # Only handle simple 1↔1 token substitutions for robustness
+        if pos >= len(clean_ids) or pos >= len(bad_ids):
+            print(f"[warn] Skipping #{idx:03d}: mismatch not 1-to-1 at position {pos}.")
+            continue
 
         # Build a readable prefix for saved plots
-        # e.g., 000_if_alice_is_cold...
         short_clean = re.sub(r"\W+", "_", clean_prompt.lower()).strip("_")
         short_clean = (short_clean[:60] + "…") if len(short_clean) > 60 else short_clean
         save_prefix = str(outdir / f"{idx:03d}_{short_clean}")
 
-        # Run plots: clean prompt + token substitution to the corrupted 4th token
+        # Run plots using a position-based substitution
+        # (trace_with_patch already treats small ints as positions)
         plot_all_flow(
             mt,
             clean_prompt,
-            token_substitutions=[(old_token_id, new_token_id)],
+            token_substitutions=[(pos, bad_ids[pos])],  # <-- position-based, not token-id search
             modelname=model_name,
             save_prefix=save_prefix,
         )
+    avg = plot_average_flows_over_templates(
+            mt,
+            templates_file="lee_templates.txt",
+            samples=10,
+            noise=0.1,
+            window=10,
+            save_dir="lee_plots_avg",
+            modelname="gpt2",  # or whatever you pass elsewhere
+        )
+    print("Average plots saved in: plots_avg/")
 
     print(f"Done. PDFs saved in: {outdir.resolve()}")
