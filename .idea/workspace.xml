@@ -4,15 +4,160 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3acec453-790b-4627-9648-0111cc4dc8de" name="Changes" comment="update activation patching">
-      <change afterPath="$PROJECT_DIR$/bigbench-templates.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/causal_conjunction_templates.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/causal_disjunction_templates.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/conditional_causal_conjunction_templates.txt" afterDir="false" />
+    <list default="true" id="3acec453-790b-4627-9648-0111cc4dc8de" name="Changes" comment="update prompt templates">
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/000_alice_wanted_to_photograph_and_it_was_sunny_so_bob_got_the_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/000_alice_wanted_to_photograph_and_it_was_sunny_so_bob_got_the_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/000_alice_wanted_to_photograph_and_it_was_sunny_so_bob_got_the_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/001_alice_wanted_to_sleep_and_it_was_bright_so_bob_got_the_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/001_alice_wanted_to_sleep_and_it_was_bright_so_bob_got_the_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/001_alice_wanted_to_sleep_and_it_was_bright_so_bob_got_the_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/003_alice_wanted_to_read_and_it_was_dark_so_bob_got_the_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/003_alice_wanted_to_read_and_it_was_dark_so_bob_got_the_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/003_alice_wanted_to_read_and_it_was_dark_so_bob_got_the_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/004_alice_wanted_to_bake_and_it_was_hot_so_bob_got_the_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/004_alice_wanted_to_bake_and_it_was_hot_so_bob_got_the_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/004_alice_wanted_to_bake_and_it_was_hot_so_bob_got_the_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/005_alice_wanted_to_study_and_it_was_cold_so_bob_got_the_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/005_alice_wanted_to_study_and_it_was_cold_so_bob_got_the_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/005_alice_wanted_to_study_and_it_was_cold_so_bob_got_the_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/006_alice_wanted_to_read_and_it_was_noisy_so_bob_got_the_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/006_alice_wanted_to_read_and_it_was_noisy_so_bob_got_the_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/006_alice_wanted_to_read_and_it_was_noisy_so_bob_got_the_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/007_alice_wanted_to_garden_and_it_was_sunny_so_bob_got_the_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/007_alice_wanted_to_garden_and_it_was_sunny_so_bob_got_the_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/007_alice_wanted_to_garden_and_it_was_sunny_so_bob_got_the_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/009_alice_wanted_to_sew_and_it_was_dim_so_bob_got_the_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/009_alice_wanted_to_sew_and_it_was_dim_so_bob_got_the_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/009_alice_wanted_to_sew_and_it_was_dim_so_bob_got_the_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/011_alice_wanted_to_exercise_and_it_was_hot_so_bob_got_the_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/011_alice_wanted_to_exercise_and_it_was_hot_so_bob_got_the_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/011_alice_wanted_to_exercise_and_it_was_hot_so_bob_got_the_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/012_alice_wanted_to_camp_and_it_was_cold_so_bob_got_the_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/012_alice_wanted_to_camp_and_it_was_cold_so_bob_got_the_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/012_alice_wanted_to_camp_and_it_was_cold_so_bob_got_the_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/013_alice_wanted_to_fish_and_it_was_sunny_so_bob_got_the_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/013_alice_wanted_to_fish_and_it_was_sunny_so_bob_got_the_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/013_alice_wanted_to_fish_and_it_was_sunny_so_bob_got_the_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/014_alice_wanted_to_hike_and_it_was_cold_so_bob_got_the_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/014_alice_wanted_to_hike_and_it_was_cold_so_bob_got_the_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/014_alice_wanted_to_hike_and_it_was_cold_so_bob_got_the_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/016_alice_wanted_to_swim_and_it_was_cold_so_bob_got_the_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/016_alice_wanted_to_swim_and_it_was_cold_so_bob_got_the_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/016_alice_wanted_to_swim_and_it_was_cold_so_bob_got_the_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/017_alice_wanted_to_dance_and_it_was_slippery_so_bob_got_the_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/017_alice_wanted_to_dance_and_it_was_slippery_so_bob_got_the_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/017_alice_wanted_to_dance_and_it_was_slippery_so_bob_got_the_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/019_alice_wanted_to_work_and_it_was_dark_so_bob_got_the_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/019_alice_wanted_to_work_and_it_was_dark_so_bob_got_the_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/019_alice_wanted_to_work_and_it_was_dark_so_bob_got_the_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/020_alice_wanted_to_knit_and_it_was_hard_so_bob_got_the_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/020_alice_wanted_to_knit_and_it_was_hard_so_bob_got_the_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/020_alice_wanted_to_knit_and_it_was_hard_so_bob_got_the_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/021_alice_wanted_to_type_and_it_was_dark_so_bob_got_the_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/021_alice_wanted_to_type_and_it_was_dark_so_bob_got_the_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/021_alice_wanted_to_type_and_it_was_dark_so_bob_got_the_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/022_alice_wanted_to_watch_and_it_was_bright_so_bob_got_the_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/022_alice_wanted_to_watch_and_it_was_bright_so_bob_got_the_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/022_alice_wanted_to_watch_and_it_was_bright_so_bob_got_the_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/023_alice_wanted_to_play_and_it_was_loud_so_bob_got_the_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/023_alice_wanted_to_play_and_it_was_loud_so_bob_got_the_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/023_alice_wanted_to_play_and_it_was_loud_so_bob_got_the_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/024_alice_wanted_to_meditate_and_it_was_bright_so_bob_got_the_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/024_alice_wanted_to_meditate_and_it_was_bright_so_bob_got_the_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/024_alice_wanted_to_meditate_and_it_was_bright_so_bob_got_the_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/026_alice_wanted_to_record_and_it_was_loud_so_bob_got_the_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/026_alice_wanted_to_record_and_it_was_loud_so_bob_got_the_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/026_alice_wanted_to_record_and_it_was_loud_so_bob_got_the_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/027_alice_wanted_to_practice_and_it_was_late_so_bob_got_the_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/027_alice_wanted_to_practice_and_it_was_late_so_bob_got_the_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/027_alice_wanted_to_practice_and_it_was_late_so_bob_got_the_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/028_alice_wanted_to_carve_and_it_was_hard_so_bob_got_the_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/028_alice_wanted_to_carve_and_it_was_hard_so_bob_got_the_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/028_alice_wanted_to_carve_and_it_was_hard_so_bob_got_the_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/029_alice_wanted_to_weld_and_it_was_bright_so_bob_got_the_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/029_alice_wanted_to_weld_and_it_was_bright_so_bob_got_the_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/029_alice_wanted_to_weld_and_it_was_bright_so_bob_got_the_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/030_alice_wanted_to_run_and_it_was_dark_so_bob_got_the_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/030_alice_wanted_to_run_and_it_was_dark_so_bob_got_the_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/030_alice_wanted_to_run_and_it_was_dark_so_bob_got_the_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/031_alice_wanted_to_build_and_it_was_precise_so_bob_got_the_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/031_alice_wanted_to_build_and_it_was_precise_so_bob_got_the_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/031_alice_wanted_to_build_and_it_was_precise_so_bob_got_the_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/034_alice_wanted_to_listen_and_it_was_noisy_so_bob_got_the_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/034_alice_wanted_to_listen_and_it_was_noisy_so_bob_got_the_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/034_alice_wanted_to_listen_and_it_was_noisy_so_bob_got_the_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/035_alice_wanted_to_rest_and_it_was_loud_so_bob_got_the_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/035_alice_wanted_to_rest_and_it_was_loud_so_bob_got_the_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/035_alice_wanted_to_rest_and_it_was_loud_so_bob_got_the_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/036_alice_wanted_to_stretch_and_it_was_cold_so_bob_got_the_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/036_alice_wanted_to_stretch_and_it_was_cold_so_bob_got_the_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/036_alice_wanted_to_stretch_and_it_was_cold_so_bob_got_the_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/037_alice_wanted_to_organize_and_it_was_heavy_so_bob_got_the_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/037_alice_wanted_to_organize_and_it_was_heavy_so_bob_got_the_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/037_alice_wanted_to_organize_and_it_was_heavy_so_bob_got_the_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/038_alice_wanted_to_measure_and_it_was_far_so_bob_got_the_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/038_alice_wanted_to_measure_and_it_was_far_so_bob_got_the_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/038_alice_wanted_to_measure_and_it_was_far_so_bob_got_the_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/039_alice_wanted_to_read_and_it_was_dark_so_bob_got_the_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/039_alice_wanted_to_read_and_it_was_dark_so_bob_got_the_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/039_alice_wanted_to_read_and_it_was_dark_so_bob_got_the_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/040_alice_wanted_to_frame_and_it_was_large_so_bob_got_the_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/040_alice_wanted_to_frame_and_it_was_large_so_bob_got_the_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/040_alice_wanted_to_frame_and_it_was_large_so_bob_got_the_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/041_alice_wanted_to_plant_and_it_was_hot_so_bob_got_the_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/041_alice_wanted_to_plant_and_it_was_hot_so_bob_got_the_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/041_alice_wanted_to_plant_and_it_was_hot_so_bob_got_the_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/042_alice_wanted_to_sing_and_it_was_loud_so_bob_got_the_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/042_alice_wanted_to_sing_and_it_was_loud_so_bob_got_the_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/042_alice_wanted_to_sing_and_it_was_loud_so_bob_got_the_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/043_alice_wanted_to_brew_and_it_was_cold_so_bob_got_the_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/043_alice_wanted_to_brew_and_it_was_cold_so_bob_got_the_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/043_alice_wanted_to_brew_and_it_was_cold_so_bob_got_the_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/044_alice_wanted_to_enter_and_it_was_locked_so_bob_got_the_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/044_alice_wanted_to_enter_and_it_was_locked_so_bob_got_the_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/044_alice_wanted_to_enter_and_it_was_locked_so_bob_got_the_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/045_alice_wanted_to_travel_and_it_was_foreign_so_bob_got_the_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/045_alice_wanted_to_travel_and_it_was_foreign_so_bob_got_the_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/045_alice_wanted_to_travel_and_it_was_foreign_so_bob_got_the_mlp.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/046_alice_wanted_to_debate_and_it_was_formal_so_bob_got_the_all.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/046_alice_wanted_to_debate_and_it_was_formal_so_bob_got_the_attn.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots_from_conjunction_templates/046_alice_wanted_to_debate_and_it_was_formal_so_bob_got_the_mlp.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/activation_patching.py" beforeDir="false" afterPath="$PROJECT_DIR$/activation_patching.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/causal_conjunction_templates.txt" beforeDir="false" afterPath="$PROJECT_DIR$/causal_conjunction_templates.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/causal_disjunction_templates.txt" beforeDir="false" afterPath="$PROJECT_DIR$/causal_disjunction_templates.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conditional_causal_conjunction_templates.txt" beforeDir="false" afterPath="$PROJECT_DIR$/conditional_causal_conjunction_templates.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lee_templates.txt" beforeDir="false" afterPath="$PROJECT_DIR$/lee_templates.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/so_templates.txt" beforeDir="false" afterPath="$PROJECT_DIR$/so_templates.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots_from_lee_templates/000_alice_went_to_the_library_because_she_wants_to_all.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots_from_lee_templates/000_alice_went_to_the_library_because_she_wants_to_all.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots_from_lee_templates/000_alice_went_to_the_library_because_she_wants_to_attn.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots_from_lee_templates/000_alice_went_to_the_library_because_she_wants_to_attn.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots_from_lee_templates/000_alice_went_to_the_library_because_she_wants_to_mlp.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots_from_lee_templates/000_alice_went_to_the_library_because_she_wants_to_mlp.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots_from_lee_templates/001_alice_went_to_the_hospital_because_she_wants_to_all.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots_from_lee_templates/001_alice_went_to_the_hospital_because_she_wants_to_all.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots_from_lee_templates/001_alice_went_to_the_hospital_because_she_wants_to_attn.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots_from_lee_templates/001_alice_went_to_the_hospital_because_she_wants_to_attn.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots_from_lee_templates/001_alice_went_to_the_hospital_because_she_wants_to_mlp.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots_from_lee_templates/001_alice_went_to_the_hospital_because_she_wants_to_mlp.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots_from_lee_templates/002_alice_went_to_the_school_because_she_wants_to_all.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots_from_lee_templates/002_alice_went_to_the_school_because_she_wants_to_all.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots_from_lee_templates/002_alice_went_to_the_school_because_she_wants_to_attn.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots_from_lee_templates/002_alice_went_to_the_school_because_she_wants_to_attn.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots_from_lee_templates/002_alice_went_to_the_school_because_she_wants_to_mlp.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots_from_lee_templates/002_alice_went_to_the_school_because_she_wants_to_mlp.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots_from_lee_templates/003_alice_went_to_the_forest_because_she_wants_to_all.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots_from_lee_templates/003_alice_went_to_the_forest_because_she_wants_to_all.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots_from_lee_templates/003_alice_went_to_the_forest_because_she_wants_to_attn.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots_from_lee_templates/003_alice_went_to_the_forest_because_she_wants_to_attn.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots_from_lee_templates/003_alice_went_to_the_forest_because_she_wants_to_mlp.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots_from_lee_templates/003_alice_went_to_the_forest_because_she_wants_to_mlp.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots_from_lee_templates/004_alice_went_to_the_concert_because_she_wants_to_all.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots_from_lee_templates/004_alice_went_to_the_concert_because_she_wants_to_all.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots_from_lee_templates/004_alice_went_to_the_concert_because_she_wants_to_attn.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots_from_lee_templates/004_alice_went_to_the_concert_because_she_wants_to_attn.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots_from_lee_templates/004_alice_went_to_the_concert_because_she_wants_to_mlp.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots_from_lee_templates/004_alice_went_to_the_concert_because_she_wants_to_mlp.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots_from_lee_templates/005_alice_went_to_the_lake_because_she_wants_to_all.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots_from_lee_templates/005_alice_went_to_the_lake_because_she_wants_to_all.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots_from_lee_templates/005_alice_went_to_the_lake_because_she_wants_to_attn.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots_from_lee_templates/005_alice_went_to_the_lake_because_she_wants_to_attn.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots_from_lee_templates/005_alice_went_to_the_lake_because_she_wants_to_mlp.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots_from_lee_templates/005_alice_went_to_the_lake_because_she_wants_to_mlp.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots_from_lee_templates/006_alice_went_to_the_track_because_she_wants_to_all.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots_from_lee_templates/006_alice_went_to_the_track_because_she_wants_to_all.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots_from_lee_templates/006_alice_went_to_the_track_because_she_wants_to_attn.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots_from_lee_templates/006_alice_went_to_the_track_because_she_wants_to_attn.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots_from_lee_templates/006_alice_went_to_the_track_because_she_wants_to_mlp.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots_from_lee_templates/006_alice_went_to_the_track_because_she_wants_to_mlp.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots_from_lee_templates/009_alice_went_to_the_lab_because_she_wants_to_all.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots_from_lee_templates/009_alice_went_to_the_lab_because_she_wants_to_all.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots_from_lee_templates/009_alice_went_to_the_lab_because_she_wants_to_attn.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots_from_lee_templates/009_alice_went_to_the_lab_because_she_wants_to_attn.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots_from_lee_templates/009_alice_went_to_the_lab_because_she_wants_to_mlp.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots_from_lee_templates/009_alice_went_to_the_lab_because_she_wants_to_mlp.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots_from_lee_templates/010_alice_went_to_the_pub_because_she_wants_to_all.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots_from_lee_templates/010_alice_went_to_the_pub_because_she_wants_to_all.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots_from_lee_templates/010_alice_went_to_the_pub_because_she_wants_to_attn.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots_from_lee_templates/010_alice_went_to_the_pub_because_she_wants_to_attn.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots_from_lee_templates/010_alice_went_to_the_pub_because_she_wants_to_mlp.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots_from_lee_templates/010_alice_went_to_the_pub_because_she_wants_to_mlp.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots_from_lee_templates/011_alice_went_to_the_gallery_because_she_wants_to_all.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots_from_lee_templates/011_alice_went_to_the_gallery_because_she_wants_to_all.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots_from_lee_templates/011_alice_went_to_the_gallery_because_she_wants_to_attn.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots_from_lee_templates/011_alice_went_to_the_gallery_because_she_wants_to_attn.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots_from_lee_templates/011_alice_went_to_the_gallery_because_she_wants_to_mlp.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots_from_lee_templates/011_alice_went_to_the_gallery_because_she_wants_to_mlp.pdf" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +205,7 @@
       <recent name="C:\Users\torre\PycharmProjects\mechinterp\components" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.tokenizer_check">
+  <component name="RunManager" selected="Python.activation_patching">
     <configuration name="activation_patching" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="mechinterp" />
       <option name="ENV_FILES" value="" />
@@ -132,8 +277,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.tokenizer_check" />
         <item itemvalue="Python.activation_patching" />
+        <item itemvalue="Python.tokenizer_check" />
         <item itemvalue="Python.condititional_delimiter_attention" />
       </list>
     </recent_temporary>
@@ -169,7 +314,9 @@
       <workItem from="1759997699700" duration="10980000" />
       <workItem from="1760085121830" duration="1745000" />
       <workItem from="1760362381338" duration="301000" />
-      <workItem from="1760610281619" duration="11460000" />
+      <workItem from="1760610281619" duration="11697000" />
+      <workItem from="1760649264889" duration="13816000" />
+      <workItem from="1760700098777" duration="99000" />
     </task>
     <task id="LOCAL-00001" summary="update activation patching">
       <option name="closed" value="true" />
@@ -187,7 +334,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759937242268</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="update prompt templates">
+      <option name="closed" value="true" />
+      <created>1760630703092</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1760630703092</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -195,11 +350,13 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="update activation patching" />
-    <option name="LAST_COMMIT_MESSAGE" value="update activation patching" />
+    <MESSAGE value="update prompt templates" />
+    <option name="LAST_COMMIT_MESSAGE" value="update prompt templates" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/activation_patching_py$tokenizer_check.coverage" NAME="tokenizer_check Coverage Results" MODIFIED="1760628144081" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/mechinterp$tokenizer_check.coverage" NAME="tokenizer_check Coverage Results" MODIFIED="1760005106126" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/activation_patching_py$activation_patching.coverage" NAME="activation_patching Coverage Results" MODIFIED="1760690437347" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/mechinterp$activation_patching.coverage" NAME="activation_patching Coverage Results" MODIFIED="1760006447266" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/mechinterp$condititional_delimiter_attention.coverage" NAME="condititional_delimiter_attention Coverage Results" MODIFIED="1759919011489" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>

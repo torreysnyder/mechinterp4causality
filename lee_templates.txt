@@ -1,25 +1,25 @@
-Alice went to the library because she wants to
-Alice went to the park because she wants to
-Alice went to the hospital because she wants to
-Alice went to the pool because she wants to
-Alice went to the school because she wants to
-Alice went to the store because she wants to
-Alice went to the forest because she wants to
-Alice went to the office because she wants to
-Alice went to the concert because she wants to
-Alice went to the woods because she wants to
-Alice went to the lake because she wants to
-Alice went to the workshop because she wants to
-Alice went to the track because she wants to
-Alice went to the sea because she wants to
-Alice went to the station because she wants to
-Alice went to the bank because she wants to
-Alice went to the farm because she wants to
-Alice went to the market because she wants to
-Alice went to the lab because she wants to
-Alice went to the party because she wants to
-Alice went to the pub because she wants to
-Alice went to the church because she wants to
-Alice went to the gallery because she wants to
-Alice went to the bedroom because she wants to
+Alice went to the library because she wants to read
+Alice went to the park because she wants to read
+Alice went to the hospital because she wants to heal
+Alice went to the pool because she wants to heal
+Alice went to the school because she wants to learn
+Alice went to the store because she wants to learn
+Alice went to the forest because she wants to hike
+Alice went to the office because she wants to hike
+Alice went to the concert because she wants to listen
+Alice went to the woods because she wants to listen
+Alice went to the lake because she wants to swim
+Alice went to the workshop because she wants to swim
+Alice went to the track because she wants to run
+Alice went to the sea because she wants to run
+Alice went to the park because she wants to play
+Alice went to the bank because she wants to play
+Alice went to the pool because she wants to swim
+Alice went to the market because she wants to swim
+Alice went to the lab because she wants to research
+Alice went to the party because she wants to research
+Alice went to the pub because she wants to drink
+Alice went to the church because she wants to drink
+Alice went to the gallery because she wants to view
+Alice went to the bedroom because she wants to view
 

@@ -23,7 +23,6 @@ from causal_trace import (
     collect_embedding_std,
 )
 
-
 torch.set_grad_enabled(False)
 
 model_name = "gpt2"  # or "EleutherAI/gpt-j-6B" or "EleutherAI/gpt-neox-20b"
@@ -32,11 +31,12 @@ mt = ModelAndTokenizer(
     torch_dtype=torch.float16,
 )
 
+
 def load_template_pairs(path):
     """
     Reads a template file where each *pair* of lines forms:
       line 1 -> clean prompt
-      line 2 -> corrupted prompt (4th token perturbed)
+      line 2 -> corrupted prompt
     Returns: list of (clean, corrupted) tuples.
     Ignores blank lines.
     """
@@ -45,40 +45,67 @@ def load_template_pairs(path):
         raise ValueError(f"Expected an even number of lines in {path}, got {len(lines)}.")
     pairs = []
     for i in range(0, len(lines), 2):
-        pairs.append((lines[i], lines[i+1]))
+        pairs.append((lines[i], lines[i + 1]))
     return pairs
+
+
+def find_word_token_substitutions(tokenizer, clean_prompt: str, corrupted_prompt: str):
+    """
+    Find all token-level substitutions needed to transform clean_prompt into corrupted_prompt.
+
+    This function handles multi-token words by finding contiguous spans of differing tokens
+    and returns a list of (position, new_token_id) tuples for all positions that differ.
+
+    Args:
+        tokenizer: The tokenizer to use
+        clean_prompt: Original prompt
+        corrupted_prompt: Modified prompt with word substitution(s)
+
+    Returns:
+        List of (position, new_token_id) tuples representing all token substitutions needed
+
+    Raises:
+        ValueError: If the prompts have different token lengths or no differences found
+    """
+    clean_ids = tokenizer.encode(clean_prompt, add_special_tokens=False)
+    corrupted_ids = tokenizer.encode(corrupted_prompt, add_special_tokens=False)
+
+    if len(clean_ids) != len(corrupted_ids):
+        raise ValueError(
+            f"Token length mismatch: clean has {len(clean_ids)} tokens, "
+            f"corrupted has {len(corrupted_ids)} tokens. "
+            f"Word-level substitution must preserve token count."
+        )
+
+    # Find all positions where tokens differ
+    substitutions = []
+    for pos, (clean_tok, corrupt_tok) in enumerate(zip(clean_ids, corrupted_ids)):
+        if clean_tok != corrupt_tok:
+            substitutions.append((pos, corrupt_tok))
+
+    if not substitutions:
+        raise ValueError("No token differences found between clean and corrupted prompts")
+
+    return substitutions
 
 
 def trace_with_patch(
         model,  # The model
         inp,  # A set of inputs
-        states_to_patch,  # A list of (token index, layername) triples to restore
-        answers_t,  # Answer probabilities to collect
+        states_to_patch,  # A list of (token index, layername) pairs to restore
+        answers_t,  # Answer token index to collect
         tokens_to_mix,  # Range of tokens to corrupt (begin, end)
         noise=0.1,  # Level of noise to add
         trace_layers=None,  # List of traced outputs to return
-        token_substitutions=None,  # List of (token_id_to_find, new_token_id) tuples
+        token_substitutions=None,  # List of (position, new_token_id) tuples
         tokenizer=None,  # Tokenizer for automatic position finding
+        **forward_kwargs,  # Extra kwargs passed to model(**inp, **forward_kwargs)
 ):
     """
     Activation patching with support for token substitution.
 
-    Args:
-        model: The model to run
-        inp: Input dictionary with 'input_ids' and 'attention_mask'
-        states_to_patch: List of (token_index, layername) pairs to restore
-        answers_t: Answer token indices to collect probabilities for
-        tokens_to_mix: Tuple (begin, end) for token range to add noise to
-        noise: Level of Gaussian noise to add
-        trace_layers: List of layer names to trace activations from
-        token_substitutions: List of (old_token_id, new_token_id) tuples OR
-                           list of (position, new_token_id) tuples if positions
-                           are already known. The function will automatically
-                           search for old_token_id in the sequence if needed.
-        tokenizer: Tokenizer instance (optional, for debug output)
-
     Returns:
-        probs: Softmax probabilities for answer tokens
+        probs: Softmax probability for the answer token
         all_traced: (optional) Stacked activations if trace_layers is not None
     """
     prng = np.random.RandomState(1)  # For reproducibility, use pseudorandom noise
@@ -93,59 +120,20 @@ def trace_with_patch(
         clean_input_ids = inp['input_ids'][0:1]  # Keep first element as clean
 
         # For token substitution, create just 1 corrupted run
-        # (unlike noise-based corruption which benefits from multiple samples)
         num_corrupted = 1
-    else:
-        # For noise-based corruption, use the existing batch size
-        # The calling code (e.g., calculate_hidden_flow) creates a batch with samples+1 items
-        # We don't modify the input in this case
-        pass
 
-    if token_substitutions is not None:
-        # Convert token_substitutions to position-based format
-        position_substitutions = []
-        for old_val, new_token_id in token_substitutions:
-            # Check if old_val is already a position (int < 1000 is heuristic for position)
-            # or if it's a token_id that needs to be found
-            if isinstance(old_val, int) and old_val < 100:
-                # Assume it's a position
-                position_substitutions.append((old_val, new_token_id))
-            else:
-                # It's a token_id - find its position
-                old_token_id = old_val
-                matches = (clean_input_ids[0] == old_token_id).nonzero(as_tuple=True)[0]
-
-                if len(matches) == 0:
-                    if tokenizer is not None:
-                        token_str = tokenizer.decode([old_token_id])
-                        raise ValueError(
-                            f"Token '{token_str}' (ID {old_token_id}) not found in input sequence"
-                        )
-                    else:
-                        raise ValueError(f"Token ID {old_token_id} not found in input sequence")
-
-                if len(matches) > 1:
-                    if tokenizer is not None:
-                        token_str = tokenizer.decode([old_token_id])
-                        print(
-                            f"Warning: Token '{token_str}' (ID {old_token_id}) appears at multiple positions: {matches.tolist()}")
-                        print(f"Using first occurrence at position {matches[0].item()}")
-                    else:
-                        print(f"Warning: Token ID {old_token_id} appears at multiple positions: {matches.tolist()}")
-                        print(f"Using first occurrence at position {matches[0].item()}")
-
-                position = matches[0].item()
-                position_substitutions.append((position, new_token_id))
-
-                if tokenizer is not None:
-                    old_token_str = tokenizer.decode([old_token_id])
-                    new_token_str = tokenizer.decode([new_token_id])
-                    print(f"Substituting '{old_token_str}' -> '{new_token_str}' at position {position}")
+        if tokenizer is not None:
+            print(f"Applying {len(token_substitutions)} token substitution(s):")
+            for pos, new_token_id in token_substitutions:
+                old_token_id = clean_input_ids[0, pos].item()
+                old_token_str = tokenizer.decode([old_token_id])
+                new_token_str = tokenizer.decode([new_token_id])
+                print(f"  Position {pos}: '{old_token_str}' -> '{new_token_str}'")
 
         corrupted_inputs = []
         for _ in range(num_corrupted):
             corrupted = clean_input_ids.clone()
-            for pos, token_id in position_substitutions:
+            for pos, token_id in token_substitutions:
                 corrupted[0, pos] = token_id
             corrupted_inputs.append(corrupted)
 
@@ -187,7 +175,7 @@ def trace_with_patch(
             [embed_layername] + list(patch_spec.keys()) + additional_layers,
             edit_output=patch_rep,
     ) as td:
-        outputs_exp = model(**inp)
+        outputs_exp = model(**inp, **forward_kwargs)
 
     # We report softmax probabilities for the answers_t token predictions of interest.
     probs = torch.softmax(outputs_exp.logits[1:, -1, :], dim=1).mean(dim=0)[answers_t]
@@ -204,7 +192,7 @@ def trace_with_patch(
 
 def calculate_hidden_flow(
         mt, prompt, subject, samples=10, noise=0.1, window=10, kind=None,
-        token_substitutions=None
+        token_substitutions=None, target_token=None
 ):
     """
     Runs causal tracing over every token/layer combination in the network
@@ -218,11 +206,8 @@ def calculate_hidden_flow(
         noise: Noise level for corruption (ignored for token substitution)
         window: Window size for windowed tracing
         kind: Type of layers to trace ('mlp', 'attn', or None for all)
-        token_substitutions:
-            - None  → use noise-based corruption over `subject`
-            - List of tuples for token substitution. Each tuple can be either:
-                (position, new_token_id)       # position is an int index in the sequence
-             or (old_token_id, new_token_id)   # old_token_id will be searched in the input ids
+        token_substitutions: List of (position, new_token_id) tuples for word-level substitution
+        target_token: Specific token to measure probability for (if None, uses predicted token)
 
     Returns:
         dict with keys:
@@ -252,13 +237,22 @@ def calculate_hidden_flow(
     # Base (clean) prediction
     with torch.no_grad():
         answer_t, base_score = [d[0] for d in predict_from_input(mt.model, inp)]
+
+    # If target_token is specified, use it instead of the predicted token
+    if target_token is not None:
+        answer_t = target_token
+        # Recalculate base_score for the target token
+        with torch.no_grad():
+            outputs = mt.model(**inp)
+            base_score = torch.softmax(outputs.logits[0, -1, :], dim=0)[answer_t].item()
+
     [answer] = decode_tokens(mt.tokenizer, [answer_t])
 
     # Probability under corruption/substitution with no restoration
     low_score = trace_with_patch(
         mt.model,
         inp,
-        [],                               # no states restored
+        [],  # no states restored
         answer_t,
         tokens_to_mix,
         noise=noise,
@@ -293,29 +287,16 @@ def calculate_hidden_flow(
         )
     differences = differences.detach().cpu()
 
-    # Highlight range for the plot:
-    # - For noise: use the subject span e_range
-    # - For token substitution: try to infer the position of the changed token
+    # Highlight range for the plot: use the span of substituted tokens
     if token_substitutions is None:
         subject_range = e_range
     else:
-        pos_to_highlight = None
         if token_substitutions:
-            first = token_substitutions[0]
-            # Accept either (position, new_id) or (old_id, new_id)
-            if isinstance(first[0], int):
-                # Position provided directly
-                if 0 <= first[0] < inp["input_ids"].shape[1]:
-                    pos_to_highlight = int(first[0])
-            else:
-                # Old token id provided: find it in the clean input_ids
-                old_id = first[0]
-                seq = inp["input_ids"][0].tolist()
-                try:
-                    pos_to_highlight = seq.index(old_id)
-                except ValueError:
-                    pos_to_highlight = None  # couldn't find it; leave empty highlight
-        subject_range = (pos_to_highlight, pos_to_highlight + 1) if pos_to_highlight is not None else (0, 0)
+            # Find the contiguous span of substituted positions
+            positions = sorted([pos for pos, _ in token_substitutions])
+            subject_range = (positions[0], positions[-1] + 1)
+        else:
+            subject_range = (0, 0)
 
     return dict(
         scores=differences,
@@ -328,17 +309,6 @@ def calculate_hidden_flow(
         window=window,
         kind=kind or "",
     )
-
-def _find_first_diff_pos(tokenizer, clean_prompt: str, corrupted_prompt: str):
-    """Return (pos, clean_ids, bad_ids) where pos is the first differing token position (or None)."""
-    clean_ids = tokenizer.encode(clean_prompt, add_special_tokens=False)
-    bad_ids   = tokenizer.encode(corrupted_prompt, add_special_tokens=False)
-    pos = None
-    for i, (a, b) in enumerate(zip(clean_ids, bad_ids)):
-        if a != b:
-            pos = i
-            break
-    return pos, clean_ids, bad_ids
 
 
 def _nanpad_to_width(a: np.ndarray, width: int):
@@ -379,7 +349,7 @@ def load_so_templates(path: Union[str, Path]) -> List[Tuple[str, str]]:
     for i in range(0, len(lines), 2):
         if i + 1 < len(lines):
             clean = lines[i]
-            bad   = lines[i + 1]
+            bad = lines[i + 1]
             if clean and bad:
                 pairs.append((clean, bad))
     return pairs
@@ -388,13 +358,14 @@ def load_so_templates(path: Union[str, Path]) -> List[Tuple[str, str]]:
 # ---- Main aggregator ---------------------------------------------------------
 
 def plot_average_flows_over_templates(
-    mt,
-    templates_file: Union[str, Path],
-    samples: int = 10,
-    noise: float = 0.1,
-    window: int = 10,
-    save_dir: Union[str, Path] = "plots_avg",
-    modelname: str = None,
+        mt,
+        templates_file: Union[str, Path],
+        samples: int = 10,
+        noise: float = 0.1,
+        window: int = 10,
+        save_dir: Union[str, Path] = "plots_avg",
+        modelname: str = None,
+        target_token: int = None,
 ) -> Dict[str, np.ndarray]:
     """
     Generates THREE average plots across all templates:
@@ -402,8 +373,8 @@ def plot_average_flows_over_templates(
       2) MLP-only
       3) Attention-only
 
-    - Detects the correct substitution position via first token diff under BPE.
-    - Skips templates where there is no 1↔1 token difference.
+    - Detects word-level differences and handles multi-token substitutions.
+    - Skips templates where token lengths don't match.
     - Handles variable sequence lengths by NaN-padding before averaging.
 
     Saves:
@@ -422,13 +393,11 @@ def plot_average_flows_over_templates(
     L_seen = None
 
     for idx, (clean_prompt, corrupted_prompt) in enumerate(pairs):
-        pos, clean_ids, bad_ids = _find_first_diff_pos(mt.tokenizer, clean_prompt, corrupted_prompt)
-
-        if pos is None or pos >= len(clean_ids) or pos >= len(bad_ids):
-            print("[avg] Skipping pair #%03d: no single-position token diff after BPE." % idx)
+        try:
+            substitutions = find_word_token_substitutions(mt.tokenizer, clean_prompt, corrupted_prompt)
+        except ValueError as e:
+            print(f"[avg] Skipping pair #{idx:03d}: {e}")
             continue
-
-        substitution = [(pos, bad_ids[pos])]
 
         # Hidden / all
         try:
@@ -440,7 +409,8 @@ def plot_average_flows_over_templates(
                 noise=noise,
                 window=window,
                 kind=None,
-                token_substitutions=substitution,
+                token_substitutions=substitutions,
+                target_token=target_token,
             )
             H = res_hidden["scores"].detach().cpu().numpy()
             if L_seen is None:
@@ -448,7 +418,7 @@ def plot_average_flows_over_templates(
             max_T_hidden = max(max_T_hidden, H.shape[1])
             hidden_mats.append(H)
         except Exception as e:
-            print("[avg] Hidden flow failed on pair #%03d: %s" % (idx, e))
+            print(f"[avg] Hidden flow failed on pair #{idx:03d}: {e}")
 
         # MLP
         try:
@@ -460,13 +430,14 @@ def plot_average_flows_over_templates(
                 noise=noise,
                 window=window,
                 kind="mlp",
-                token_substitutions=substitution,
+                token_substitutions=substitutions,
+                target_token=target_token,
             )
             M = res_mlp["scores"].detach().cpu().numpy()
             max_T_mlp = max(max_T_mlp, M.shape[1])
             mlp_mats.append(M)
         except Exception as e:
-            print("[avg] MLP flow failed on pair #%03d: %s" % (idx, e))
+            print(f"[avg] MLP flow failed on pair #{idx:03d}: {e}")
 
         # Attention
         try:
@@ -478,16 +449,17 @@ def plot_average_flows_over_templates(
                 noise=noise,
                 window=window,
                 kind="attn",
-                token_substitutions=substitution,
+                token_substitutions=substitutions,
+                target_token=target_token,
             )
             A = res_attn["scores"].detach().cpu().numpy()
             max_T_attn = max(max_T_attn, A.shape[1])
             attn_mats.append(A)
         except Exception as e:
-            print("[avg] Attn flow failed on pair #%03d: %s" % (idx, e))
+            print(f"[avg] Attn flow failed on pair #{idx:03d}: {e}")
 
     if not hidden_mats and not mlp_mats and not attn_mats:
-        raise RuntimeError("No valid templates to average. Check your templates file or tokenization diffs.")
+        raise RuntimeError("No valid templates to average. Check your templates file or tokenization.")
 
     # Pad to common widths and average with NaN-ignoring mean
     def _avg_stack(mats, width):
@@ -501,8 +473,8 @@ def plot_average_flows_over_templates(
         return avg
 
     avg_hidden = _avg_stack(hidden_mats, max_T_hidden)
-    avg_mlp    = _avg_stack(mlp_mats,    max_T_mlp)
-    avg_attn   = _avg_stack(attn_mats,   max_T_attn)
+    avg_mlp = _avg_stack(mlp_mats, max_T_mlp)
+    avg_attn = _avg_stack(attn_mats, max_T_attn)
 
     # Save plots
     model_tag = " (%s)" % modelname if modelname else ""
@@ -512,14 +484,16 @@ def plot_average_flows_over_templates(
         _save_avg_heatmap(avg_mlp, "Average MLP Flow%s" % model_tag, save_dir / "avg_mlp.png")
     if avg_attn is not None:
         _save_avg_heatmap(avg_attn, "Average Attention Flow%s" % model_tag, save_dir / "avg_attn.png")
+
     # Also save per-layer line plots (mean over token positions)
     if avg_hidden is not None:
-        _save_per_layer_line(avg_hidden, "Average Hidden Flow — Per Layer%s" % model_tag, save_dir / "avg_hidden_per_layer.png")
+        _save_per_layer_line(avg_hidden, "Average Hidden Flow – Per Layer%s" % model_tag,
+                             save_dir / "avg_hidden_per_layer.png")
     if avg_mlp is not None:
-        _save_per_layer_line(avg_mlp,    "Average MLP Flow — Per Layer%s" % model_tag,    save_dir / "avg_mlp_per_layer.png")
+        _save_per_layer_line(avg_mlp, "Average MLP Flow – Per Layer%s" % model_tag, save_dir / "avg_mlp_per_layer.png")
     if avg_attn is not None:
-        _save_per_layer_line(avg_attn,   "Average Attention Flow — Per Layer%s" % model_tag, save_dir / "avg_attn_per_layer.png")
-
+        _save_per_layer_line(avg_attn, "Average Attention Flow – Per Layer%s" % model_tag,
+                             save_dir / "avg_attn_per_layer.png")
 
     return {"hidden": avg_hidden, "mlp": avg_mlp, "attn": avg_attn}
 
@@ -536,7 +510,7 @@ def trace_important_states(model, num_layers, inp, e_range, answer_t, noise=0.1,
         e_range: Token range to corrupt (for noise) or None (for token substitution)
         answer_t: Answer token indices
         noise: Noise level (ignored for token substitution)
-        token_substitutions: List of (old_token_id, new_token_id) tuples
+        token_substitutions: List of (position, new_token_id) tuples
         tokenizer: Tokenizer instance
     """
     ntoks = inp["input_ids"].shape[1]
@@ -575,7 +549,7 @@ def trace_important_window(
         kind: Type of layers ('mlp', 'attn', or None)
         window: Window size for sliding window
         noise: Noise level (ignored for token substitution)
-        token_substitutions: List of (old_token_id, new_token_id) tuples
+        token_substitutions: List of (position, new_token_id) tuples
         tokenizer: Tokenizer instance
     """
     ntoks = inp["input_ids"].shape[1]
@@ -598,6 +572,74 @@ def trace_important_window(
     return torch.stack(table)
 
 
+def plot_trace_heatmap_with_scores(result, savepdf=None, title=None, xlabel=None, modelname=None):
+    """
+    Modified version of plot_trace_heatmap that adds score annotations to colorbar.
+    """
+    import matplotlib.pyplot as plt
+    from matplotlib import patches
+
+    differences = result["scores"]
+    low_score = result["low_score"]
+    high_score = result["high_score"]
+    answer = result["answer"]
+    kind = result.get("kind", None)
+    if kind == "":
+        kind = None
+    window = result.get("window", 10)
+    labels = list(result["input_tokens"])
+    subject_range = result.get("subject_range", None)
+
+    # Add asterisks to labels in subject_range
+    if subject_range is not None:
+        start, end = subject_range
+        for i in range(start, end):
+            if 0 <= i < len(labels):
+                labels[i] = labels[i] + "*"
+
+    with plt.rc_context(rc={"font.family": "Times New Roman"}):
+        fig, ax = plt.subplots(figsize=(3.5, 2), dpi=200)
+        h = ax.pcolor(
+            differences,
+            cmap={None: "Purples", "mlp": "Greens", "attn": "Reds"}[
+                kind
+            ],
+            vmin=low_score,
+        )
+        ax.invert_yaxis()
+        ax.set_yticks([0.5 + i for i in range(len(differences))])
+        ax.set_xticks([0.5 + i for i in range(0, len(labels) - 1, 5)])
+        ax.set_xticklabels(list(range(0, len(labels) - 1, 5)))
+        ax.set_yticklabels(labels)
+        if not modelname:
+            modelname = "GPT"
+        if not kind:
+            ax.set_title("Impact of restoring state after corrupted input", pad=25)
+            ax.set_xlabel(f"single restored layer within {modelname}")
+        else:
+            kindname = "MLP" if kind == "mlp" else "Attn"
+            ax.set_title(f"Impact of restoring {kindname} after corrupted input", pad=25)
+            ax.set_xlabel(f"single restored {kindname} layer within {modelname}")
+        cb = plt.colorbar(h)
+        cb.set_label(f"p({answer})")
+
+        # Add score annotations next to the colorbar at top and bottom positions
+        # Use data coordinates to place them at the actual score values
+        cb.ax.text(2.5, high_score, f'High score: {high_score:.3f}',
+                   transform=cb.ax.get_yaxis_transform(),
+                   fontsize=7, va='bottom', ha='left')
+        cb.ax.text(2.5, low_score, f'Low score: {low_score:.3f}',
+                   transform=cb.ax.get_yaxis_transform(),
+                   fontsize=7, va='top', ha='left')
+
+        if savepdf:
+            Path(savepdf).parent.mkdir(parents=True, exist_ok=True)
+            plt.savefig(savepdf, bbox_inches="tight")
+            plt.close()
+        else:
+            plt.show()
+
+
 def plot_hidden_flow(
         mt,
         prompt,
@@ -609,6 +651,7 @@ def plot_hidden_flow(
         modelname=None,
         savepdf=None,
         token_substitutions=None,
+        target_token=None,
 ):
     """
     Plot hidden flow heatmap for causal tracing.
@@ -623,19 +666,230 @@ def plot_hidden_flow(
         kind: Layer type ('mlp', 'attn', or None)
         modelname: Model name for plot title
         savepdf: Path to save PDF
-        token_substitutions: List of (old_token_id, new_token_id) tuples for token substitution
+        token_substitutions: List of (position, new_token_id) tuples for word-level substitution
+        target_token: Specific token to measure probability for
     """
     if subject is None and token_substitutions is None:
         subject = guess_subject(prompt)
     result = calculate_hidden_flow(
         mt, prompt, subject, samples=samples, noise=noise, window=window, kind=kind,
-        token_substitutions=token_substitutions
+        token_substitutions=token_substitutions, target_token=target_token
     )
-    plot_trace_heatmap(result, savepdf, modelname=modelname)
+    plot_trace_heatmap_with_scores(result, savepdf, modelname=modelname)
 
 
-def plot_all_flow(mt, prompt, subject=None, noise=0.1, modelname=None,
-                  token_substitutions=None, save_prefix=None):
+def trace_attention_heads(
+        model, num_layers, num_heads, inp, e_range, answer_t, noise=0.1,
+        token_substitutions=None, tokenizer=None
+):
+    """
+    Trace importance of individual attention heads across all positions.
+
+    Args:
+        model: The model
+        num_layers: Number of layers
+        num_heads: Number of attention heads per layer
+        inp: Input dictionary
+        e_range: Token range to corrupt (for noise) or None (for token substitution)
+        answer_t: Answer token indices
+        noise: Noise level
+        token_substitutions: List of (position, new_token_id) tuples
+        tokenizer: Tokenizer instance
+
+    Returns:
+        Tensor of shape [num_positions, num_layers, num_heads] with restoration scores
+    """
+    ntoks = inp["input_ids"].shape[1]
+    table = []
+
+    for tnum in range(ntoks):
+        layer_results = []
+        for layer in range(num_layers):
+            head_results = []
+            for head in range(num_heads):
+                # Isolate a single attention head using HuggingFace's head_mask.
+                mask = torch.zeros((num_layers, num_heads), dtype=torch.float32, device=inp['input_ids'].device)
+                mask[layer, head] = 1.0
+
+                r = trace_with_patch(
+                    model,
+                    inp,
+                    [(tnum, layername(model, layer, 'attn'))],
+                    answer_t,
+                    tokens_to_mix=e_range,
+                    noise=noise,
+                    token_substitutions=token_substitutions,
+                    tokenizer=tokenizer,
+                    head_mask=mask,
+                )
+                head_results.append(r)
+            layer_results.append(torch.stack(head_results))
+        table.append(torch.stack(layer_results))
+
+    return torch.stack(table)
+
+
+def calculate_attention_head_flow(
+        mt, prompt, subject, samples=10, noise=0.1,
+        token_substitutions=None, target_token=None
+):
+    """
+    Calculate attention head activation patching across all positions.
+
+    Returns:
+        dict with:
+            scores: [num_positions, num_layers, num_heads] tensor
+            low_score: probability under corruption
+            high_score: probability under clean input
+            ... (other metadata)
+    """
+    # Determine number of attention heads (GPT-2 specific)
+    if "gpt2" in mt.model.config._name_or_path.lower():
+        num_heads = mt.model.config.n_head
+    else:
+        num_heads = 12  # default assumption
+
+    # Create inputs
+    if token_substitutions is not None:
+        inp = make_inputs(mt.tokenizer, [prompt])
+        tokens_to_mix = None
+        e_range = None
+    else:
+        inp = make_inputs(mt.tokenizer, [prompt] * (samples + 1))
+        e_range = find_token_range(mt.tokenizer, inp["input_ids"][0], subject)
+        tokens_to_mix = e_range
+
+    # Base prediction
+    with torch.no_grad():
+        answer_t, base_score = [d[0] for d in predict_from_input(mt.model, inp)]
+
+    if target_token is not None:
+        answer_t = target_token
+        with torch.no_grad():
+            outputs = mt.model(**inp)
+            base_score = torch.softmax(outputs.logits[0, -1, :], dim=0)[answer_t].item()
+
+    [answer] = decode_tokens(mt.tokenizer, [answer_t])
+
+    # Low score
+    low_score = trace_with_patch(
+        mt.model,
+        inp,
+        [],
+        answer_t,
+        tokens_to_mix,
+        noise=noise,
+        token_substitutions=token_substitutions,
+        tokenizer=mt.tokenizer,
+    ).item()
+
+    # Trace attention heads
+    differences = trace_attention_heads(
+        mt.model,
+        mt.num_layers,
+        num_heads,
+        inp,
+        tokens_to_mix,
+        answer_t,
+        noise=noise,
+        token_substitutions=token_substitutions,
+        tokenizer=mt.tokenizer,
+    )
+    differences = differences.detach().cpu()
+
+    # Subject range
+    if token_substitutions is None:
+        subject_range = e_range
+    else:
+        if token_substitutions:
+            positions = sorted([pos for pos, _ in token_substitutions])
+            subject_range = (positions[0], positions[-1] + 1)
+        else:
+            subject_range = (0, 0)
+
+    return dict(
+        scores=differences,
+        low_score=low_score,
+        high_score=base_score,
+        input_ids=inp["input_ids"][0],
+        input_tokens=decode_tokens(mt.tokenizer, inp["input_ids"][0]),
+        subject_range=subject_range,
+        answer=answer,
+    )
+
+
+def plot_attention_head_heatmap_average(results_list, savepdf=None,
+                                        title="Attention Head Activation Patching (All Pos)"):
+    """
+    Plot average attention head activation patching results across all positions.
+
+    Args:
+        results_list: List of result dicts from calculate_attention_head_flow
+        savepdf: Path to save PDF
+        title: Plot title
+    """
+    import matplotlib.pyplot as plt
+
+    # Average the scores across all templates
+    all_scores = []
+    for result in results_list:
+        scores = result["scores"]  # [num_positions, num_layers, num_heads]
+        # Average over positions to get [num_layers, num_heads]
+        avg_over_pos = scores.mean(dim=0)
+        all_scores.append(avg_over_pos)
+
+    # Stack and average across templates
+    stacked = torch.stack(all_scores)
+    avg_scores = stacked.mean(dim=0).numpy()  # [num_layers, num_heads]
+
+    # Create plot
+    fig, ax = plt.subplots(figsize=(4, 3), dpi=200)
+
+    # Use diverging colormap centered at 0
+    vmax = max(abs(avg_scores.min()), abs(avg_scores.max()))
+    h = ax.imshow(
+        avg_scores,
+        cmap="RdBu_r",
+        aspect="auto",
+        vmin=-vmax,
+        vmax=vmax,
+        origin="lower"
+    )
+
+    ax.set_xlabel("Head")
+    ax.set_ylabel("Layer")
+    ax.set_title(title)
+
+    # Set ticks
+    num_layers, num_heads = avg_scores.shape
+    ax.set_xticks(range(0, num_heads, 2))
+    ax.set_yticks(range(0, num_layers, 2))
+
+    cb = plt.colorbar(h, ax=ax)
+    cb.set_label("Avg Δ probability")
+
+    plt.tight_layout()
+
+    if savepdf:
+        Path(savepdf).parent.mkdir(parents=True, exist_ok=True)
+        plt.savefig(savepdf, bbox_inches="tight")
+        plt.close()
+    else:
+        plt.show()
+
+
+def plot_all_flow(
+    mt,
+    prompt,
+    subject=None,
+    samples=10,
+    noise=0.1,
+    window=10,
+    modelname=None,
+    save_prefix=None,
+    token_substitutions=None,
+    target_token=None,
+):
     """
     Plot hidden flow for all layer types (all, mlp, attn).
 
@@ -645,9 +899,19 @@ def plot_all_flow(mt, prompt, subject=None, noise=0.1, modelname=None,
     for kind, suffix in [(None, "all"), ("mlp", "mlp"), ("attn", "attn")]:
         savepdf = f"{save_prefix}_{suffix}.pdf" if save_prefix else None
         plot_hidden_flow(
-            mt, prompt, subject, modelname=modelname, noise=noise, kind=kind,
-            token_substitutions=token_substitutions, savepdf=savepdf
+            mt,
+            prompt,
+            subject=subject,
+            samples=samples,
+            noise=noise,
+            window=window,
+            kind=kind,
+            modelname=modelname,
+            savepdf=savepdf,
+            token_substitutions=token_substitutions,
+            target_token=target_token,
         )
+
 
 def _save_per_layer_line(avg_matrix: np.ndarray, title: str, outfile: Path):
     """
@@ -669,40 +933,57 @@ def _save_per_layer_line(avg_matrix: np.ndarray, title: str, outfile: Path):
     plt.savefig(str(outfile), dpi=200)
     plt.close()
 
+
 if __name__ == "__main__":
     # Configure model
-    model_name = "gpt2"  # keep as-is or change
+    model_name = "gpt2"
     mt = ModelAndTokenizer(model_name, torch_dtype=torch.float16)
 
-    # Load clean/corrupted prompt pairs
-    template_path = "lee_templates.txt"   # adjust if needed
+    # Load clean/corrupted prompt pairs from lee_templates.txt
+    template_path = "lee_templates.txt"
     pairs = load_template_pairs(template_path)
 
     # Output directory for PDFs
     outdir = Path("plots_from_lee_templates")
     outdir.mkdir(parents=True, exist_ok=True)
 
+    # Store attention head results for averaging
+    attention_head_results = []
+
     # Process each pair
-    for idx, (clean_prompt, corrupted_prompt) in enumerate(tqdm(pairs, desc="Templates")):
-        # Tokenize both prompts (no special tokens)
-        clean_ids = mt.tokenizer.encode(clean_prompt, add_special_tokens=False)
-        bad_ids   = mt.tokenizer.encode(corrupted_prompt, add_special_tokens=False)
+    for idx, (clean_full, corrupted_full) in enumerate(tqdm(pairs, desc="Templates")):
+        # Extract the target word (last word) and create prompts without it
+        clean_words = clean_full.split()
+        corrupted_words = corrupted_full.split()
 
-        # Find the first differing token position
-        pos = None
-        for i, (a, b) in enumerate(zip(clean_ids, bad_ids)):
-            if a != b:
-                pos = i
-                break
-
-        # Safety checks
-        if pos is None:
-            print(f"[warn] Skipping #{idx:03d}: no token-level difference after BPE tokenization.")
+        if not clean_words or not corrupted_words:
+            print(f"[warn] Skipping #{idx:03d}: empty prompt")
             continue
 
-        # Only handle simple 1↔1 token substitutions for robustness
-        if pos >= len(clean_ids) or pos >= len(bad_ids):
-            print(f"[warn] Skipping #{idx:03d}: mismatch not 1-to-1 at position {pos}.")
+        # Last word is the target - remove it from prompts
+        target_word = clean_words[-1]
+        clean_prompt = " ".join(clean_words[:-1])
+        corrupted_prompt = " ".join(corrupted_words[:-1])
+
+        # Get the token ID for the target word
+        # Handle both single-token and multi-token words
+        target_tokens = mt.tokenizer.encode(" " + target_word, add_special_tokens=False)
+        if len(target_tokens) == 0:
+            # Try without leading space
+            target_tokens = mt.tokenizer.encode(target_word, add_special_tokens=False)
+
+        if len(target_tokens) == 0:
+            print(f"[warn] Skipping #{idx:03d}: could not tokenize target word '{target_word}'")
+            continue
+
+        # Use the first token of the target word for probability measurement
+        target_token_id = target_tokens[0]
+
+        try:
+            # Find word-level token substitutions (handles multi-token words)
+            substitutions = find_word_token_substitutions(mt.tokenizer, clean_prompt, corrupted_prompt)
+        except ValueError as e:
+            print(f"[warn] Skipping #{idx:03d}: {e}")
             continue
 
         # Build a readable prefix for saved plots
@@ -710,24 +991,51 @@ if __name__ == "__main__":
         short_clean = (short_clean[:60] + "…") if len(short_clean) > 60 else short_clean
         save_prefix = str(outdir / f"{idx:03d}_{short_clean}")
 
-        # Run plots using a position-based substitution
-        # (trace_with_patch already treats small ints as positions)
+        # Run plots using word-level substitutions and target token
         plot_all_flow(
             mt,
             clean_prompt,
-            token_substitutions=[(pos, bad_ids[pos])],  # <-- position-based, not token-id search
+            token_substitutions=substitutions,
             modelname=model_name,
             save_prefix=save_prefix,
+            target_token=target_token_id,
         )
-    avg = plot_average_flows_over_templates(
-            mt,
-            templates_file="lee_templates.txt",
-            samples=10,
-            noise=0.1,
-            window=10,
-            save_dir="lee_plots_avg",
-            modelname="gpt2",  # or whatever you pass elsewhere
-        )
-    print("Average plots saved in: plots_avg/")
 
-    print(f"Done. PDFs saved in: {outdir.resolve()}")
+        # Calculate attention head results for this template
+        try:
+            attn_head_result = calculate_attention_head_flow(
+                mt,
+                prompt=clean_prompt,
+                subject=None,
+                samples=10,
+                noise=0.1,
+                token_substitutions=substitutions,
+                target_token=target_token_id,
+            )
+            attention_head_results.append(attn_head_result)
+        except Exception as e:
+            print(f"[warn] Attention head flow failed on #{idx:03d}: {e}")
+
+    # Generate average attention head plot
+    if attention_head_results:
+        avg_attn_plot_path = outdir / "average_attention_heads_all_positions.pdf"
+        plot_attention_head_heatmap_average(
+            attention_head_results,
+            savepdf=str(avg_attn_plot_path),
+            title="attn_head_out Activation Patching (All Pos)"
+        )
+        print(f"Average attention head plot saved: {avg_attn_plot_path}")
+
+    # Optionally: average plots across all templates
+    # avg = plot_average_flows_over_templates(
+    #     mt,
+    #     templates_file="lee_templates.txt",
+    #     samples=10,
+    #     noise=0.1,
+    #     window=10,
+    #     save_dir="lee_plots_avg",
+    #     modelname="gpt2",
+    # )
+    # print("Average plots saved in: lee_plots_avg/")
+
+    print(f"Done. Individual PDFs saved in: {outdir.resolve()}")

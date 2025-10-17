@@ -1,3 +1,53 @@
+If Alice wants to photograph and it is sunny, then Bob will get the polarizer.
+If Alice wants to sleep and it is bright, then Bob will get the curtains.
+If Alice wants to read and it is windy, then Bob will get the paperweight.
+If Alice wants to paint and it is dark, then Bob will get the easel lamp.
+If Alice wants to bake and it is hot, then Bob will get the oven mitts.
+If Alice wants to study and it is cold, then Bob will get the space heater.
+If Alice wants to write and it is noisy, then Bob will get the noise cancelers.
+If Alice wants to garden and it is sunny, then Bob will get the sun hat.
+If Alice wants to cook and it is smoky, then Bob will get the exhaust fan.
+If Alice wants to sew and it is dim, then Bob will get the magnifying glass.
+If Alice wants to sketch and it is windy, then Bob will get the drawing board.
+If Alice wants to exercise and it is hot, then Bob will get the cooling towel.
+If Alice wants to camp and it is cold, then Bob will get the sleeping bag.
+If Alice wants to fish and it is sunny, then Bob will get the tackle box.
+If Alice wants to hike and it is rainy, then Bob will get the rain jacket.
+If Alice wants to drive and it is snowy, then Bob will get the snow chains.
+If Alice wants to swim and it is cold, then Bob will get the wet suit.
+If Alice wants to dance and it is slippery, then Bob will get the dance shoes.
+If Alice wants to climb and it is windy, then Bob will get the safety harness.
+If Alice wants to work and it is dark, then Bob will get the desk lamp.
+If Alice wants to knit and it is complicated, then Bob will get the pattern book.
+If Alice wants to type and it is dark, then Bob will get the backlit keyboard.
+If Alice wants to watch and it is bright, then Bob will get the screen shade.
+If Alice wants to play and it is loud, then Bob will get the ear protection.
+If Alice wants to meditate and it is bright, then Bob will get the eye mask.
+If Alice wants to grill and it is windy, then Bob will get the windscreen guard.
+If Alice wants to record and it is echoey, then Bob will get the foam panels.
+If Alice wants to practice and it is late, then Bob will get the mute pedal.
+If Alice wants to carve and it is hard, then Bob will get the power tool.
+If Alice wants to weld and it is bright, then Bob will get the welding mask.
+If Alice wants to run and it is dark, then Bob will get the reflective vest.
+If Alice wants to build and it is precise, then Bob will get the laser level.
+If Alice wants to explore and it is foggy, then Bob will get the compass device.
+If Alice wants to sail and it is calm, then Bob will get the auxiliary motor.
+If Alice wants to listen and it is noisy, then Bob will get the studio headphones.
+If Alice wants to rest and it is loud, then Bob will get the white noise machine.
+If Alice wants to stretch and it is cold, then Bob will get the heating pad.
+If Alice wants to clean and it is high, then Bob will get the extension pole.
+If Alice wants to organize and it is heavy, then Bob will get the rolling cart.
+If Alice wants to measure and it is distant, then Bob will get the laser measure.
+If Alice wants to learn and it is dark, then Bob will get the reading light.
+If Alice wants to frame and it is large, then Bob will get the backing board.
+If Alice wants to plant and it is frozen, then Bob will get the soil heater.
+If Alice wants to drill and it is thick, then Bob will get the masonry bit.
+If Alice wants to sing and it is echoey, then Bob will get the microphone shield.
+If Alice wants to brew and it is cold, then Bob will get the heating element.
+If Alice wants to unlock and it is frozen, then Bob will get the lock deicer.
+If Alice wants to stargaze and it is cloudy, then Bob will get the star chart app.
+If Alice wants to travel and it is foreign, then Bob will get the translation guide.
+If Alice wants to debate and it is formal, then Bob will get the note cards.
 If Alice wants to photograph and it is sunny, then Bob will get the
 If Alice wants to photograph and it is dark, then Bob will get the
 If Alice wants to sleep and it is bright, then Bob will get the
