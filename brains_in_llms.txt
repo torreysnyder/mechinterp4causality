@@ -1,0 +1,4 @@
+The hungry cat chased the small bird but it flew.
+The hungry cat chased the small mouse but it flew.
+The hungry cat chased the small bird.
+The hungry bear chased the small bird.

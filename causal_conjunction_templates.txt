@@ -1,196 +1,90 @@
-Alice wanted to photograph and it was sunny so Bob got the polarizer.
-Alice wanted to sleep and it was bright so Bob got the curtains.
-Alice wanted to read and it was windy so Bob got the paperweight.
-Alice wanted to paint and it was dark so Bob got the easel lamp.
-Alice wanted to bake and it was hot so Bob got the oven mitts.
-Alice wanted to study and it was cold so Bob got the space heater.
-Alice wanted to write and it was noisy so Bob got the noise cancelers.
-Alice wanted to garden and it was sunny so Bob got the sun hat.
-Alice wanted to cook and it was smoky so Bob got the exhaust fan.
-Alice wanted to sew and it was dim so Bob got the magnifying glass.
-Alice wanted to sketch and it was windy so Bob got the drawing board.
-Alice wanted to exercise and it was hot so Bob got the cooling towel.
-Alice wanted to camp and it was cold so Bob got the sleeping bag.
-Alice wanted to fish and it was sunny so Bob got the tackle box.
-Alice wanted to hike and it was rainy so Bob got the rain jacket.
-Alice wanted to drive and it was snowy so Bob got the snow chains.
-Alice wanted to swim and it was cold so Bob got the wet suit.
-Alice wanted to dance and it was slippery so Bob got the dance shoes.
-Alice wanted to climb and it was windy so Bob got the safety harness.
-Alice wanted to work and it was dark so Bob got the desk lamp.
-Alice wanted to knit and it was complicated so Bob got the pattern book.
-Alice wanted to type and it was dark so Bob got the backlit keyboard.
-Alice wanted to watch and it was bright so Bob got the screen shade.
-Alice wanted to play and it was loud so Bob got the ear protection.
-Alice wanted to meditate and it was bright so Bob got the eye mask.
-Alice wanted to grill and it was windy so Bob got the windscreen guard.
-Alice wanted to record and it was echoey so Bob got the foam panels.
-Alice wanted to practice and it was late so Bob got the mute pedal.
-Alice wanted to carve and it was hard so Bob got the power tool.
-Alice wanted to weld and it was bright so Bob got the welding mask.
-Alice wanted to run and it was dark so Bob got the reflective vest.
-Alice wanted to build and it was precise so Bob got the laser level.
-Alice wanted to explore and it was foggy so Bob got the compass device.
-Alice wanted to sail and it was calm so Bob got the auxiliary motor.
-Alice wanted to listen and it was noisy so Bob got the studio headphones.
-Alice wanted to rest and it was loud so Bob got the white noise machine.
-Alice wanted to stretch and it was cold so Bob got the heating pad.
-Alice wanted to clean and it was high so Bob got the extension pole.
-Alice wanted to organize and it was heavy so Bob got the rolling cart.
-Alice wanted to measure and it was distant so Bob got the laser measure.
-Alice wanted to learn and it was dark so Bob got the reading light.
-Alice wanted to frame and it was large so Bob got the backing board.
-Alice wanted to plant and it was frozen so Bob got the soil heater.
-Alice wanted to drill and it was thick so Bob got the masonry bit.
-Alice wanted to sing and it was echoey so Bob got the microphone shield.
-Alice wanted to brew and it was cold so Bob got the heating element.
-Alice wanted to unlock and it was frozen so Bob got the lock deicer.
-Alice wanted to stargaze and it was cloudy so Bob got the star chart app.
-Alice wanted to travel and it was foreign so Bob got the translation guide.
-Alice wanted to debate and it was formal so Bob got the note cards.
-RetryTProvide 50 examples of sentences with the following template "If Alice wants to [VERB] and it is [ADJECTIVE], then Bob will get the [OBJECT]". All sentences should feature causal conjunction where both causal variables (relating to verb and adjective) are necessary to cause Bob to get the object. All sentences should be the same lengthHere are 50 examples with causal conjunction where both conditions are necessary:
-
-If Alice wants to photograph and it is sunny, then Bob will get the polarizer.
-If Alice wants to sleep and it is bright, then Bob will get the curtains.
-If Alice wants to read and it is windy, then Bob will get the paperweight.
-If Alice wants to paint and it is dark, then Bob will get the easel lamp.
-If Alice wants to bake and it is hot, then Bob will get the oven mitts.
-If Alice wants to study and it is cold, then Bob will get the space heater.
-If Alice wants to write and it is noisy, then Bob will get the noise cancelers.
-If Alice wants to garden and it is sunny, then Bob will get the sun hat.
-If Alice wants to cook and it is smoky, then Bob will get the exhaust fan.
-If Alice wants to sew and it is dim, then Bob will get the magnifying glass.
-If Alice wants to sketch and it is windy, then Bob will get the drawing board.
-If Alice wants to exercise and it is hot, then Bob will get the cooling towel.
-If Alice wants to camp and it is cold, then Bob will get the sleeping bag.
-If Alice wants to fish and it is sunny, then Bob will get the tackle box.
-If Alice wants to hike and it is rainy, then Bob will get the rain jacket.
-If Alice wants to drive and it is snowy, then Bob will get the snow chains.
-If Alice wants to swim and it is cold, then Bob will get the wet suit.
-If Alice wants to dance and it is slippery, then Bob will get the dance shoes.
-If Alice wants to climb and it is windy, then Bob will get the safety harness.
-If Alice wants to work and it is dark, then Bob will get the desk lamp.
-If Alice wants to knit and it is complicated, then Bob will get the pattern book.
-If Alice wants to type and it is dark, then Bob will get the backlit keyboard.
-If Alice wants to watch and it is bright, then Bob will get the screen shade.
-If Alice wants to play and it is loud, then Bob will get the ear protection.
-If Alice wants to meditate and it is bright, then Bob will get the eye mask.
-If Alice wants to grill and it is windy, then Bob will get the windscreen guard.
-If Alice wants to record and it is echoey, then Bob will get the foam panels.
-If Alice wants to practice and it is late, then Bob will get the mute pedal.
-If Alice wants to carve and it is hard, then Bob will get the power tool.
-If Alice wants to weld and it is bright, then Bob will get the welding mask.
-If Alice wants to run and it is dark, then Bob will get the reflective vest.
-If Alice wants to build and it is precise, then Bob will get the laser level.
-If Alice wants to explore and it is foggy, then Bob will get the compass device.
-If Alice wants to sail and it is calm, then Bob will get the auxiliary motor.
-If Alice wants to listen and it is noisy, then Bob will get the studio headphones.
-If Alice wants to rest and it is loud, then Bob will get the white noise machine.
-If Alice wants to stretch and it is cold, then Bob will get the heating pad.
-If Alice wants to clean and it is high, then Bob will get the extension pole.
-If Alice wants to organize and it is heavy, then Bob will get the rolling cart.
-If Alice wants to measure and it is distant, then Bob will get the laser measure.
-If Alice wants to learn and it is dark, then Bob will get the reading light.
-If Alice wants to frame and it is large, then Bob will get the backing board.
-If Alice wants to plant and it is frozen, then Bob will get the soil heater.
-If Alice wants to drill and it is thick, then Bob will get the masonry bit.
-If Alice wants to sing and it is echoey, then Bob will get the microphone shield.
-If Alice wants to brew and it is cold, then Bob will get the heating element.
-If Alice wants to unlock and it is frozen, then Bob will get the lock deicer.
-If Alice wants to stargaze and it is cloudy, then Bob will get the star chart app.
-If Alice wants to travel and it is foreign, then Bob will get the translation guide.
-If Alice wants to debate and it is formal, then Bob will get the note cards.
-Alice wanted to photograph and it was sunny so Bob got the
-Alice wanted to photograph and it was cloudy so Bob got the
-Alice wanted to sleep and it was bright so Bob got the
-Alice wanted to sleep and it was dark so Bob got the
-Alice wanted to draw and it was windy so Bob got the
-Alice wanted to draw and it was rainy so Bob got the
-Alice wanted to read and it was dark so Bob got the
-Alice wanted to read and it was bright so Bob got the
-Alice wanted to bake and it was hot so Bob got the
-Alice wanted to bake and it was cold so Bob got the
-Alice wanted to study and it was cold so Bob got the
-Alice wanted to study and it was hot so Bob got the
-Alice wanted to read and it was noisy so Bob got the
-Alice wanted to read and it was silent so Bob got the
-Alice wanted to garden and it was sunny so Bob got the
-Alice wanted to garden and it was cloudy so Bob got the
-Alice wanted to cook and it was smoky so Bob got the
-Alice wanted to cook and it was frozen so Bob got the
-Alice wanted to sew and it was dim so Bob got the
-Alice wanted to sew and it was bright so Bob got the
-Alice wanted to write and it was windy so Bob got the
-Alice wanted to write and it was rainy so Bob got the
-Alice wanted to exercise and it was hot so Bob got the
-Alice wanted to exercise and it was cold so Bob got the
-Alice wanted to camp and it was cold so Bob got the
-Alice wanted to camp and it was hot so Bob got the
-Alice wanted to fish and it was sunny so Bob got the
-Alice wanted to fish and it was cloudy so Bob got the
-Alice wanted to hike and it was cold so Bob got the
-Alice wanted to hike and it was hot so Bob got the
-Alice wanted to drive and it was snowy so Bob got the
-Alice wanted to drive and it was foggy so Bob got the
-Alice wanted to swim and it was cold so Bob got the
-Alice wanted to swim and it was hot so Bob got the
-Alice wanted to dance and it was slippery so Bob got the
-Alice wanted to dance and it was busy so Bob got the
-Alice wanted to climb and it was windy so Bob got the
-Alice wanted to climb and it was sunny so Bob got the
-Alice wanted to work and it was dark so Bob got the
-Alice wanted to work and it was bright so Bob got the
-Alice wanted to knit and it was hard so Bob got the
-Alice wanted to knit and it was simple so Bob got the
-Alice wanted to type and it was dark so Bob got the
-Alice wanted to type and it was bright so Bob got the
-Alice wanted to watch and it was bright so Bob got the
-Alice wanted to watch and it was dark so Bob got the
-Alice wanted to play and it was loud so Bob got the
-Alice wanted to play and it was silent so Bob got the
-Alice wanted to meditate and it was bright so Bob got the
-Alice wanted to meditate and it was dark so Bob got the
-Alice wanted to grill and it was windy so Bob got the
-Alice wanted to grill and it was rainy so Bob got the
-Alice wanted to record and it was loud so Bob got the
-Alice wanted to record and it was silent so Bob got the
-Alice wanted to practice and it was late so Bob got the
-Alice wanted to practice and it was early so Bob got the
-Alice wanted to carve and it was hard so Bob got the
-Alice wanted to carve and it was soft so Bob got the
-Alice wanted to weld and it was bright so Bob got the
-Alice wanted to weld and it was dark so Bob got the
-Alice wanted to run and it was dark so Bob got the
-Alice wanted to run and it was bright so Bob got the
-Alice wanted to build and it was precise so Bob got the
-Alice wanted to build and it was busy so Bob got the
-Alice wanted to explore and it was misty so Bob got the
-Alice wanted to explore and it was sunny so Bob got the
-Alice wanted to sail and it was calm so Bob got the
-Alice wanted to sail and it was windy so Bob got the
-Alice wanted to listen and it was noisy so Bob got the
-Alice wanted to listen and it was silent so Bob got the
-Alice wanted to rest and it was loud so Bob got the
-Alice wanted to rest and it was silent so Bob got the
-Alice wanted to stretch and it was cold so Bob got the
-Alice wanted to stretch and it was hot so Bob got the
-Alice wanted to organize and it was heavy so Bob got the
-Alice wanted to organize and it was light so Bob got the
-Alice wanted to measure and it was far so Bob got the
-Alice wanted to measure and it was close so Bob got the
-Alice wanted to read and it was dark so Bob got the
-Alice wanted ro read and it was bright so Bob got the
-Alice wanted to frame and it was large so Bob got the
-Alice wanted to frame and it was small so Bob got the
-Alice wanted to plant and it was hot so Bob got the
-Alice wanted to plant and it was dry so Bob got the
-Alice wanted to sing and it was loud so Bob got the
-Alice wanted to sing and it was silent so Bob got the
-Alice wanted to brew and it was cold so Bob got the
-Alice wanted to brew and it was hot so Bob got the
-Alice wanted to enter and it was locked so Bob got the
-Alice wanted to enter and it was open so Bob got the
-Alice wanted to travel and it was foreign so Bob got the
-Alice wanted to travel and it was local so Bob got the
-Alice wanted to debate and it was formal so Bob got the
-Alice wanted to debate and it was casual so Bob got the
+He studied and the test was fair so he passed
+He studied and the test was hard so he passed
+The roads were icy and visibility was poor therefore there was an accident
+The roads were icy and visibility was clear therefore there was an accident
+She had musical talent and she practiced frequently so she became a musician
+She had musical talent and she practiced rarely so she became a musician
+The soil was fertile and we had adequate rain thus the harvest was abundant
+The soil was fertile and we had insufficient rain thus the harvest was abundant
+He was experienced and he knew someone at the company so he was hired
+He was unfit and he knew someone at the company so he was hired
+The medication was effective and she followed the prescription therefore she recovered
+The medication was effective and she ignored the prescription therefore she recovered
+The team had skilled players and they worked well together so they won
+The team had poor players and they worked well together so they won
+The restaurant had good food and the service was excellent thus it became popular
+The restaurant had good food and the service was inept thus it became popular
+She was passionate about the cause and had free time so she volunteered
+She was passionate about the cause and had no time so she volunteered
+The price was reasonable and the quality was good therefore the product demand was high
+The price was reasonable and the quality was bad therefore the product demand was high
+He had financial resources and a strong business plan so his startup was successful
+He had financial resources and a poor business plan so his startup was successful
+The weather was perfect and we were prepared thus the event was a success
+The weather was perfect and we were inept thus the event was a success
+She spoke the language fluently and understood the local customs so she assimilated well
+She spoke the language poorly and understood the local customs so she assimilated well
+The evidence was strong and the witnesses were credible therefore the conviction was secured
+The evidence was weak and the witnesses were credible therefore the conviction was secured
+He was creative and resourceful so his solution worked
+He was creative and inept so his solution worked
+The market was expanding and they had a unique product thus the company was successful
+The market was expanding and they had a bad product thus the company was successful
+She was determined and had good mentors so she was successful
+She was determined and had poor mentors so she was successful
+The location was ideal and the rent was low therefore the lease terms were accepted
+The location was ideal and the rent was expensive therefore the lease terms were accepted
+He exercised regularly and maintained a healthy diet so he was fit
+He exercised regularly and maintained a poor diet so he was fit
+The script was brilliant and the actors were talented thus the film was critically acclaimed
+The script was brilliant and the actors were inept thus the film was critically acclaimed
+She had experience and was willing to relocate so her job search was successful
+She had experience and was unable to relocate so her job search was successful
+The foundation was solid and the building passed inspection therefore it was safe
+The foundation was solid and the building neglected inspection therefore it was safe
+He was charismatic and had compelling policies so his campaign was successful
+He was charismatic and had irrational policies so his campaign was successful
+The ingredients were fresh and the chef was skilled thus the meal was delicious
+The ingredients were fresh and the chef was poor thus the meal was delicious
+She saved consistently and invested wisely so she retired early
+She saved consistently and invested poorly so she retired early
+The students were motivated and the curriculum was engaging therefore learning outcomes improved
+The students were motivated and the curriculum was boring therefore learning outcomes improved
+He had insider knowledge and acted quickly so his gains were high
+He had insider knowledge and acted slowly so his gains were high
+The technology was advanced and the team was experienced thus the project finished early
+The technology was advanced and the team was unskilled thus the project finished early
+The winds were strong and the structure was weak therefore the building collapsed
+The winds were strong and the structure was strong therefore the building collapsed
+He networked actively and delivered quality work so his business was successful
+He networked actively and delivered poor work so his business was successful
+The cause was just and the campaign was organized so their advocacy was effective
+The cause was just and the campaign was bad so their advocacy was effective
+The design was user-friendly and the marketing was effective therefore the app was successful
+The design was user-friendly and the marketing was bad therefore the app was successful
+The demand was high and supply was low thus prices increased
+The demand was high and supply was high thus prices increased
+She had vision and secured adequate funding so her startup was successful
+She had vision and secured insufficient funding so her startup was successful
+The soil was contaminated and the water was polluted therefore the ecosystem was lost
+The soil was contaminated and the water was untainted therefore the ecosystem was lost
+He was punctual and consistently impressed his superiors so he was promoted
+He was punctual and consistently disappointed his superiors so he was promoted
+The brake failed and the road was icy thus the car crashed
+The brake failed and the road was flat thus the car crashed
+She had athletic prowess and received expert coaching so she won
+She had athletic prowess and received inept coaching so she won
+The economy was booming and their timing was perfect therefore their profits were high
+The economy was booming and their timing was poor therefore their profits were high
+The plot was gripping and the pacing was perfect thus the novel was critically acclaimed
+The plot was gripping and the pacing was slow thus the novel was critically acclaimed
+The wood was dry and the spark was hot therefore the forest fire spread rapidly
+The wood was dry and the spark was missing therefore the forest fire spread rapidly
+He understood customer needs and had manufacturing capability so his company was successful
+He ignored customer needs and had manufacturing capability so his company was successful
+The defendant had an alibi and the forensics were inconclusive thus he was acquitted
+The defendant had an alibi and the forensics were incriminating thus he was acquitted
+She was diplomatic and possessed deep technical knowledge so her solution was successful
+She was diplomatic and possessed no technical knowledge so her solution was successful
+The leadership was corrupt and the oversight was poor therefore the organization collapsed
+The leadership was corrupt and the oversight was effective therefore the organization collapsed

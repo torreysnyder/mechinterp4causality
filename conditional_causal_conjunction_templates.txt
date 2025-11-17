@@ -1,150 +1,90 @@
-If Alice wants to photograph and it is sunny, then Bob will get the polarizer.
-If Alice wants to sleep and it is bright, then Bob will get the curtains.
-If Alice wants to read and it is windy, then Bob will get the paperweight.
-If Alice wants to paint and it is dark, then Bob will get the easel lamp.
-If Alice wants to bake and it is hot, then Bob will get the oven mitts.
-If Alice wants to study and it is cold, then Bob will get the space heater.
-If Alice wants to write and it is noisy, then Bob will get the noise cancelers.
-If Alice wants to garden and it is sunny, then Bob will get the sun hat.
-If Alice wants to cook and it is smoky, then Bob will get the exhaust fan.
-If Alice wants to sew and it is dim, then Bob will get the magnifying glass.
-If Alice wants to sketch and it is windy, then Bob will get the drawing board.
-If Alice wants to exercise and it is hot, then Bob will get the cooling towel.
-If Alice wants to camp and it is cold, then Bob will get the sleeping bag.
-If Alice wants to fish and it is sunny, then Bob will get the tackle box.
-If Alice wants to hike and it is rainy, then Bob will get the rain jacket.
-If Alice wants to drive and it is snowy, then Bob will get the snow chains.
-If Alice wants to swim and it is cold, then Bob will get the wet suit.
-If Alice wants to dance and it is slippery, then Bob will get the dance shoes.
-If Alice wants to climb and it is windy, then Bob will get the safety harness.
-If Alice wants to work and it is dark, then Bob will get the desk lamp.
-If Alice wants to knit and it is complicated, then Bob will get the pattern book.
-If Alice wants to type and it is dark, then Bob will get the backlit keyboard.
-If Alice wants to watch and it is bright, then Bob will get the screen shade.
-If Alice wants to play and it is loud, then Bob will get the ear protection.
-If Alice wants to meditate and it is bright, then Bob will get the eye mask.
-If Alice wants to grill and it is windy, then Bob will get the windscreen guard.
-If Alice wants to record and it is echoey, then Bob will get the foam panels.
-If Alice wants to practice and it is late, then Bob will get the mute pedal.
-If Alice wants to carve and it is hard, then Bob will get the power tool.
-If Alice wants to weld and it is bright, then Bob will get the welding mask.
-If Alice wants to run and it is dark, then Bob will get the reflective vest.
-If Alice wants to build and it is precise, then Bob will get the laser level.
-If Alice wants to explore and it is foggy, then Bob will get the compass device.
-If Alice wants to sail and it is calm, then Bob will get the auxiliary motor.
-If Alice wants to listen and it is noisy, then Bob will get the studio headphones.
-If Alice wants to rest and it is loud, then Bob will get the white noise machine.
-If Alice wants to stretch and it is cold, then Bob will get the heating pad.
-If Alice wants to clean and it is high, then Bob will get the extension pole.
-If Alice wants to organize and it is heavy, then Bob will get the rolling cart.
-If Alice wants to measure and it is distant, then Bob will get the laser measure.
-If Alice wants to learn and it is dark, then Bob will get the reading light.
-If Alice wants to frame and it is large, then Bob will get the backing board.
-If Alice wants to plant and it is frozen, then Bob will get the soil heater.
-If Alice wants to drill and it is thick, then Bob will get the masonry bit.
-If Alice wants to sing and it is echoey, then Bob will get the microphone shield.
-If Alice wants to brew and it is cold, then Bob will get the heating element.
-If Alice wants to unlock and it is frozen, then Bob will get the lock deicer.
-If Alice wants to stargaze and it is cloudy, then Bob will get the star chart app.
-If Alice wants to travel and it is foreign, then Bob will get the translation guide.
-If Alice wants to debate and it is formal, then Bob will get the note cards.
-If Alice wants to photograph and it is sunny, then Bob will get the
-If Alice wants to photograph and it is dark, then Bob will get the
-If Alice wants to sleep and it is bright, then Bob will get the
-If Alice wants to sleep and it is dark, then Bob will get the
-If Alice wants to draw and it is windy, then Bob will get the
-If Alice wants to draw and it is hot, then Bob will get the
-If Alice wants to paint and it is dark, then Bob will get the
-If Alice wants to paint and it is bright, then Bob will get the
-If Alice wants to bake and it is hot, then Bob will get the
-If Alice wants to bake and it is cold, then Bob will get the
-If Alice wants to study and it is cold, then Bob will get the
-If Alice wants to study and it is hot, then Bob will get the
-If Alice wants to write and it is noisy, then Bob will get the
-If Alice wants to write and it is quiet, then Bob will get the
-If Alice wants to garden and it is sunny, then Bob will get the
-If Alice wants to garden and it is cloudy, then Bob will get the
-If Alice wants to cook and it is smoky, then Bob will get the
-If Alice wants to cook and it is frozen, then Bob will get the
-If Alice wants to sew and it is dim, then Bob will get the
-If Alice wants to sew and it is bright, then Bob will get the
-If Alice wants to sketch and it is windy, then Bob will get the
-If Alice wants to sketch and it is sunny, then Bob will get the
-If Alice wants to exercise and it is hot, then Bob will get the
-If Alice wants to exercise and it is cold, then Bob will get the
-If Alice wants to camp and it is cold, then Bob will get the
-If Alice wants to camp and it is hot, then Bob will get the
-If Alice wants to fish and it is sunny, then Bob will get the
-If Alice wants to fish and it is rainy, then Bob will get the
-If Alice wants to hike and it is rainy, then Bob will get the
-If Alice wants to hike and it is sunny, then Bob will get the
-If Alice wants to drive and it is snowy, then Bob will get the
-If Alice wants to drive and it is hot, then Bob will get the
-If Alice wants to swim and it is cold, then Bob will get the
-If Alice wants to swim and it is hot, then Bob will get the
-If Alice wants to dance and it is slippery, then Bob will get the
-If Alice wants to dance and it is dry, then Bob will get the
-If Alice wants to climb and it is windy, then Bob will get the
-If Alice wants to climb and it is sunny, then Bob will get the
-If Alice wants to work and it is dark, then Bob will get the
-If Alice wants to work and it is bright, then Bob will get the
-If Alice wants to knit and it is complicated, then Bob will get the
-If Alice wants to knit and it is simple, then Bob will get the
-If Alice wants to type and it is dark, then Bob will get the
-If Alice wants to type and it is bright, then Bob will get the
-If Alice wants to watch and it is bright, then Bob will get the
-If Alice wants to watch and it is dark, then Bob will get the
-If Alice wants to play and it is loud, then Bob will get the
-If Alice wants to play and it is quiet, then Bob will get the
-If Alice wants to meditate and it is bright, then Bob will get
-If Alice wants to meditate and it is dark, then Bob will get
-If Alice wants to grill and it is windy, then Bob will get the
-If Alice wants to grill and it is sunny, then Bob will get the
-If Alice wants to record and it is noisy, then Bob will get the
-If Alice wants to record and it is quiet, then Bob will get the
-If Alice wants to practice and it is late, then Bob will get the
-If Alice wants to practice and it is early, then Bob will get the
-If Alice wants to carve and it is hard, then Bob will get the
-If Alice wants to carve and it is soft, then Bob will get the
-If Alice wants to weld and it is bright, then Bob will get the
-If Alice wants to weld and it is dark, then Bob will get the
-If Alice wants to run and it is dark, then Bob will get the
-If Alice wants to run and it is bright, then Bob will get the
-If Alice wants to build and it is precise, then Bob will get the
-If Alice wants to build and it is busy, then Bob will get the
-If Alice wants to explore and it is foggy, then Bob will get the
-If Alice wants to explore and it is clear, then Bob will get the
-If Alice wants to sail and it is calm, then Bob will get the
-If Alice wants to sail and it is windy, then Bob will get the
-If Alice wants to listen and it is noisy, then Bob will get the
-If Alice wants to listen and it is quiet, then Bob will get the
-If Alice wants to rest and it is loud, then Bob will get the
-If Alice wants to rest and it is quiet, then Bob will get the
-If Alice wants to stretch and it is cold, then Bob will get the
-If Alice wants to stretch and it is hot, then Bob will get the
-If Alice wants to clean and it is high, then Bob will get the
-If Alice wants to clean and it is wet, then Bob will get the
-If Alice wants to organize and it is heavy, then Bob will get the
-If Alice wants to organize and it is light, then Bob will get the
-If Alice wants to measure and it is distant, then Bob will get the
-If Alice wants to measure and it is near, then Bob will get the
-If Alice wants to learn and it is dark, then Bob will get the
-If Alice wants to learn and it is bright, then Bob will get the
-If Alice wants to frame and it is large, then Bob will get the
-If Alice wants to frame and it is small, then Bob will get the
-If Alice wants to plant and it is frozen, then Bob will get the
-If Alice wants to plant and it is dry, then Bob will get the
-If Alice wants to drill and it is thick, then Bob will get the
-If Alice wants to drill and it is thin, then Bob will get the
-If Alice wants to sing and it is loud, then Bob will get the
-If Alice wants to sing and it is quiet, then Bob will get the
-If Alice wants to brew and it is cold, then Bob will get the
-If Alice wants to brew and it is hot, then Bob will get the
-If Alice wants to unlock and it is frozen, then Bob will get the
-If Alice wants to unlock and it is open, then Bob will get the
-If Alice wants to stargaze and it is cloudy, then Bob will get the
-If Alice wants to stargaze and it is sunny, then Bob will get the
-If Alice wants to travel and it is foreign, then Bob will get the
-If Alice wants to travel and it is local, then Bob will get the
-If Alice wants to debate and it is formal, then Bob will get the
-If Alice wants to debate and it is casual, then Bob will get the
+If he studies and the test is fair, then he will pass
+If he studies and the test is hard, then he will pass
+If the roads are icy and visibility is poor, then there will be an accident
+If the roads are icy and visibility is clear, then there will be an accident
+If she has musical talent and she practices frequently, then she will become a musician
+If she has musical talent and she practices rarely, then she will become a musician
+If the soil is fertile and we have adequate rain, then the harvest will be abundant
+If the soil is fertile and we have insufficient rain, then the harvest will be abundant
+If he is experienced and he knows someone at the company, then he will be hired
+If he is unfit and he knows someone at the company, then he will be hired
+If the medication is effective and she follows the prescription, then she will recover
+If the medication is effective and she ignores the prescription, then she will recover
+If the team has skilled players and they work well together, then they will win
+If the team has poor players and they work well together, then they will win
+If the restaurant has good food and the service is excellent, then it will become popular
+If the restaurant has good food and the service is inept, then it will become popular
+If she is passionate about the cause and has free time, then she will volunteer
+If she is passionate about the cause and has no time, then she will volunteer
+If the price is reasonable and the quality is good, then the product demand will be high
+If the price is reasonable and the quality is bad, then the product demand will be high
+If he has financial resources and a strong business plan, then his startup will be successful
+If he has financial resources and a poor business plan, then his startup will be successful
+If the weather is perfect and we are prepared, then the event will be a success
+If the weather is perfect and we are inept, then the event will be a success
+If she speaks the language fluently and understands the local customs, then she will assimilate well
+If she speaks the language poorly and understands the local customs, then she will assimilate well
+If the evidence is strong and the witnesses are credible, then the conviction will be secured
+If the evidence is weak and the witnesses are credible, then the conviction will be secured
+If he is creative and resourceful, then his solution will work
+If he is creative and inept, then his solution will work
+If the market is expanding and they have a unique product, then the company will be successful
+If the market is expanding and they have a bad product, then the company will be successful
+If she is determined and has good mentors, then she will be successful
+If she is determined and has poor mentors, then she will be successful
+If the location is ideal and the rent is low, then the lease terms will be accepted
+If the location is ideal and the rent is expensive, then the lease terms will be accepted
+If he exercises regularly and maintains a healthy diet, then he will be fit
+If he exercises regularly and maintains a poor diet, then he will be fit
+If the script is brilliant and the actors are talented, then the film will be critically acclaimed
+If the script is brilliant and the actors are inept, then the film will be critically acclaimed
+If she has experience and is willing to relocate, then her job search will be successful
+If she has experience and is unable to relocate, then her job search will be successful
+If the foundation is solid and the building passes inspection, then it will be safe
+If the foundation is solid and the building neglects inspection, then it will be safe
+If he is charismatic and has compelling policies, then his campaign will be successful
+If he is charismatic and has irrational policies, then his campaign will be successful
+If the ingredients are fresh and the chef is skilled, then the meal will be delicious
+If the ingredients are fresh and the chef is poor, then the meal will be delicious
+If she saves consistently and invests wisely, then she will retire early
+If she saves consistently and invests poorly, then she will retire early
+If the students are motivated and the curriculum is engaging, then learning outcomes will improve
+If the students are motivated and the curriculum is boring, then learning outcomes will improve
+If he has insider knowledge and acts quickly, then his gains will be high
+If he has insider knowledge and acts slowly, then his gains will be high
+If the technology is advanced and the team is experienced, then the project will finish early
+If the technology is advanced and the team is unskilled, then the project will finish early
+If the winds are strong and the structure is weak, then the building will collapse
+If the winds are strong and the structure is strong, then the building will collapse
+If he networks actively and delivers quality work, then his business will be successful
+If he networks actively and delivers poor work, then his business will be successful
+If the cause is just and the campaign is organized, then their advocacy will be effective
+If the cause is just and the campaign is bad, then their advocacy will be effective
+If the design is user-friendly and the marketing is effective, then the app will be successful
+If the design is user-friendly and the marketing is bad, then the app will be successful
+If the demand is high and supply is low, then prices will increase
+If the demand is high and supply is high, then prices will increase
+If she has vision and secures adequate funding, then her startup will be successful
+If she has vision and secures insufficient funding, then her startup will be successful
+If the soil is contaminated and the water is polluted, then the ecosystem will be lost
+If the soil is contaminated and the water is untainted, then the ecosystem will be lost
+If he is punctual and consistently impresses his superiors, then he will be promoted
+If he is punctual and consistently disappoints his superiors, then he will be promoted
+If the brake fails and the road is icy, then the car will crash
+If the brake fails and the road is flat, then the car will crash
+If she has athletic prowess and receives expert coaching, then she will win
+If she has athletic prowess and receives inept coaching, then she will win
+If the economy is booming and their timing is perfect, then their profits will be high
+If the economy is booming and their timing is poor, then their profits will be high
+If the plot is gripping and the pacing is perfect, then the novel will be critically acclaimed
+If the plot is gripping and the pacing is slow, then the novel will be critically acclaimed
+If the wood is dry and the spark is hot, then the forest fire will spread rapidly
+If the wood is dry and the spark is missing, then the forest fire will spread rapidly
+If he understands customer needs and has manufacturing capability, then his company will be successful
+If he ignores customer needs and has manufacturing capability, then his company will be successful
+If the defendant has an alibi and the forensics are inconclusive, then he will be acquitted
+If the defendant has an alibi and the forensics are incriminating, then he will be acquitted
+If she is diplomatic and possesses deep technical knowledge, then her solution will be successful
+If she is diplomatic and possesses no technical knowledge, then her solution will be successful
+If the leadership is corrupt and the oversight is poor, then the organization will collapse
+If the leadership is corrupt and the oversight is effective, then the organization will collapse

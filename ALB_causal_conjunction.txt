@@ -1,0 +1,12 @@
+Alice is going to the airport and it is far so she had to rush
+Alice is going to the airport and it is close so she had to rush
+Alice is going to the station and it is urgent so she had to hurry
+Alice is going to the station and it is minor so she had to hurry
+Alice is going to the beach and it is sunny so she had to wear sunscreen
+Alice is going to the beach and it is dark so she had to wear sunscreen
+Alice is going to the farm and it is muddy so she had to wear boots
+Alice is going to the farm and it is dry so she had to wear boots
+Alice is going outside and it is chilly so she had to wear layers
+Alice is going outside and it is hot so she had to wear layers
+
+

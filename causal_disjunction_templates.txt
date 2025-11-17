@@ -1,144 +1,116 @@
-Alice wanted to cook and it was cold so Bob got the firewood.
-Alice wanted to read and it was dark so Bob got the lantern.
-Alice wanted to swim and it was hot so Bob got the towels.
-Alice wanted to paint and it was messy so Bob got the tarp.
-Alice wanted to sleep and it was loud so Bob got the earplugs.
-Alice wanted to write and it was dim so Bob got the lamp.
-Alice wanted to study and it was noisy so Bob got the headphones.
-Alice wanted to garden and it was dry so Bob got the hose.
-Alice wanted to bake and it was warm so Bob got the fan.
-Alice wanted to camp and it was rainy so Bob got the tent.
-Alice wanted to dance and it was crowded so Bob got the space.
-Alice wanted to fish and it was windy so Bob got the weights.
-Alice wanted to climb and it was steep so Bob got the rope.
-Alice wanted to drive and it was foggy so Bob got the lights.
-Alice wanted to sew and it was torn so Bob got the needle.
-Alice wanted to clean and it was dirty so Bob got the mop.
-Alice wanted to hike and it was muddy so Bob got the boots.
-Alice wanted to photograph and it was bright so Bob got the filter.
-Alice wanted to rest and it was uncomfortable so Bob got the pillow.
-Alice wanted to eat and it was late so Bob got the snacks.
-Alice wanted to work and it was cluttered so Bob got the desk.
-Alice wanted to exercise and it was cramped so Bob got the mat.
-Alice wanted to sketch and it was blank so Bob got the paper.
-Alice wanted to sail and it was choppy so Bob got the vest.
-Alice wanted to meditate and it was hectic so Bob got the cushion.
-Alice wanted to run and it was slippery so Bob got the shoes.
-Alice wanted to build and it was broken so Bob got the tools.
-Alice wanted to explore and it was dark so Bob got the flashlight.
-Alice wanted to grill and it was breezy so Bob got the cover.
-Alice wanted to practice and it was quiet so Bob got the metronome.
-Alice wanted to relax and it was tense so Bob got the music.
-Alice wanted to organize and it was chaotic so Bob got the boxes.
-Alice wanted to travel and it was far so Bob got the map.
-Alice wanted to knit and it was cold so Bob got the yarn.
-Alice wanted to sing and it was silent so Bob got the microphone.
-Alice wanted to watch and it was blurry so Bob got the glasses.
-Alice wanted to play and it was boring so Bob got the cards.
-Alice wanted to carve and it was rough so Bob got the knife.
-Alice wanted to type and it was broken so Bob got the keyboard.
-Alice wanted to drink and it was hot so Bob got the water.
-Alice wanted to learn and it was complex so Bob got the guide.
-Alice wanted to stretch and it was stiff so Bob got the band.
-Alice wanted to decorate and it was plain so Bob got the ornaments.
-Alice wanted to measure and it was long so Bob got the tape.
-Alice wanted to listen and it was faint so Bob got the speakers.
-Alice wanted to polish and it was dull so Bob got the cloth.
-Alice wanted to plant and it was hard so Bob got the shovel.
-Alice wanted to frame and it was loose so Bob got the nails.
-Alice wanted to record and it was quiet so Bob got the recorder.
-Alice wanted to unlock and it was stuck so Bob got the key.
-Alice wanted to cook and it was cold so Bob got the
-Alice wanted to cook and it was hot so Bob got the
-Alice wanted to read and it was dark so Bob got the
-Alice wanted to read and it was bright so Bob got the
-Alice wanted to swim and it was hot so Bob got the
-Alice wanted to swim and it was cold so Bob got the
-Alice wanted to paint and it was dirty so Bob got the
-Alice wanted to paint and it was clean so Bob got the
-Alice wanted to sleep and it was loud so Bob got the
-Alice wanted to sleep and it was noisy so Bob got the
-Alice wanted to write and it was dim so Bob got the
-Alice wanted to write and it was bright so Bob got the
-Alice wanted to study and it was noisy so Bob got the
-Alice wanted to study and it was silent so Bob got the
-Alice wanted to garden and it was hot so Bob got the
-Alice wanted to garden and it was cold so Bob got the
-Alice wanted to bake and it was warm so Bob got the
-Alice wanted to bake and it was cold so Bob got the
-Alice wanted to camp and it was cold so Bob got the
-Alice wanted to camp and it was hot so Bob got the
-Alice wanted to fish and it was cold so Bob got the
-Alice wanted to fish and it was hot so Bob got the
-Alice wanted to climb and it was hard so Bob got the
-Alice wanted to climb and it was flat so Bob got the
-Alice wanted to drive and it was foggy so Bob got the
-Alice wanted to drive and it was snowy so Bob got the
-Alice wanted to sew and it was torn so Bob got the
-Alice wanted to sew and it was new so Bob got the
-Alice wanted to clean and it was messy so Bob got the
-Alice wanted to clean and it was tidy so Bob got the
-Alice wanted to hike and it was muddy so Bob got the
-Alice wanted to hike and it was rainy so Bob got the
-Alice wanted to photograph and it was bright so Bob got the
-Alice wanted to photograph and it was dark so Bob got the
-Alice wanted to sleep and it was hard so Bob got the
-Alice wanted to sleep and it was soft so Bob got the
-Alice wanted to eat and it was late so Bob got the
-Alice wanted to eat and it was early so Bob got the
-Alice wanted to work and it was cluttered so Bob got the
-Alice wanted to work and it was tidy so Bob got the
-Alice wanted to exercise and it was cramped so Bob got the
-Alice wanted to exercise and it was spacious so Bob got the
-Alice wanted to sketch and it was blank so Bob got the
-Alice wanted to sketch and it was full so Bob got the
-Alice wanted to sail and it was choppy so Bob got the
-Alice wanted to sail and it was smooth so Bob got the
-Alice wanted to meditate and it was hectic so Bob got the
-Alice wanted to meditate and it was calm so Bob got the
-Alice wanted to run and it was rainy so Bob got the
-Alice wanted to run and it was sunny so Bob got the
-Alice wanted to build and it was broken so Bob got the
-Alice wanted to build and it was functional so Bob got the
-Alice wanted to explore and it was dark so Bob got the
-Alice wanted to explore and it was bright so Bob got the
-Alice wanted to grill and it was windy so Bob got the
-Alice wanted to grill and it was sunny so Bob got the
-Alice wanted to practice and it was silent so Bob got the
-Alice wanted to practice and it was loud so Bob got the
-Alice wanted to relax and it was tense so Bob got the
-Alice wanted to relax and it was calm so Bob got the
-Alice wanted to organize and it was chaotic so Bob got the
-Alice wanted to organize and it was calm so Bob got the
-Alice wanted to travel and it was far so Bob got the
-Alice wanted to travel and it was close so Bob got the
-Alice wanted to knit and it was cold so Bob got the
-Alice wanted to knit and it was warm so Bob got the
-Alice wanted to sing and it was loud so Bob got the
-Alice wanted to sing and it was silent so Bob got the
-Alice wanted to watch and it was dark so Bob got the
-Alice wanted to watch and it was clear so Bob got the
-Alice wanted to carve and it was rough so Bob got the
-Alice wanted to carve and it was soft so Bob got the
-Alice wanted to type and it was broken so Bob got the
-Alice wanted to type and it was functional so Bob got the
-Alice wanted to drink and it was hot so Bob got the
-Alice wanted to drink and it was cold so Bob got the
-Alice wanted to learn and it was complex so Bob got the
-Alice wanted to learn and it was easy so Bob got the
-Alice wanted to stretch and it was stiff so Bob got the
-Alice wanted to stretch and it was flexible so Bob got the
-Alice wanted to decorate and it was plain so Bob got the
-Alice wanted to decorate and it was pretty so Bob got the
-Alice wanted to measure and it was long so Bob got the
-Alice wanted to measure and it was short so Bob got the
-Alice wanted to listen and it was faint so Bob got the
-Alice wanted to listen and it was loud so Bob got the
-Alice wanted to polish and it was dull so Bob got the
-Alice wanted to polish and it was shiny so Bob got the
-Alice wanted to plant and it was hard so Bob got the
-Alice wanted to plant and it was easy so Bob got the
-Alice wanted to record and it was silent so Bob got the
-Alice wanted to record and it was loud so Bob got the
-Alice wanted to enter and it was locked so Bob got the
-Alice wanted to enter and it was open so Bob got the
+The sprinkler is on and it is raining so the grass is wet
+The sprinkler is off and it is raining so the grass is wet
+Alice wanted to cook and it was cold so Bob got the firewood
+Alice wanted to cook and it was hot so Bob got the firewood
+Alice wanted to read and it was dark so Bob got the lantern
+Alice wanted to read and it was bright so Bob got the lantern
+Alice wanted to paint and it was messy so Bob got the tarp
+Alice wanted to paint and it was tidy so Bob got the tarp
+Alice wanted to sleep and it was loud so Bob got the earplugs
+Alice wanted to sleep and it was silent so Bob got the earplugs
+Alice wanted to write and it was dim so Bob got the lamp
+Alice wanted to write and it was bright so Bob got the lamp
+Alice wanted to study and it was noisy so Bob got the headphones
+Alice wanted to study and it was silent so Bob got the headphones
+Alice wanted to camp and it was rainy so Bob got the tent
+Alice wanted to camp and it was sunny so Bob got the tent
+Alice wanted to climb and it was high so Bob got the rope
+Alice wanted to climb and it was low so Bob got the rope
+Alice wanted to sew and it was torn so Bob got the needle
+Alice wanted to sew and it was fixed so Bob got the needle
+Alice wanted to clean and it was messy so Bob got the mop
+Alice wanted to clean and it was tidy so Bob got the mop
+Alice wanted to hike and it was muddy so Bob got the boots
+Alice wanted to hike and it was paved so Bob got the boots
+Alice wanted to rest and it was stiff so Bob got the pillow
+Alice wanted to rest and it was comfortable so Bob got the pillow
+Alice wanted to sail and it was choppy so Bob got the vest
+Alice wanted to sail and it was calm so Bob got the vest
+Alice wanted to run and it was wet so Bob got the shoes
+Alice wanted to run and it was dry so Bob got the shoes
+Alice wanted to build and it was broken so Bob got the tools
+Alice wanted to build and it was fixed so Bob got the tools
+Alice wanted to organize and it was chaotic so Bob got the boxes
+Alice wanted to organize and it was tidy so Bob got the boxes
+Alice wanted to knit and it was cold so Bob got the yarn
+Alice wanted to knit and it was warm so Bob got the yarn
+Alice wanted to sing and it was silent so Bob got the microphone
+Alice wanted to sing and it was noisy so Bob got the microphone
+Alice wanted to carve and it was rough so Bob got the knife
+Alice wanted to carve and it was soft so Bob got the knife
+Alice wanted to drink and it was hot so Bob got the water
+Alice wanted to drink and it was cold so Bob got the water
+Alice wanted to decorate and it was plain so Bob got the ornaments
+Alice wanted to decorate and it was pretty so Bob got the ornaments
+Alice wanted to measure and it was long so Bob got the tape
+Alice wanted to measure and it was short so Bob got the tape
+Alice wanted to polish and it was dull so Bob got the cloth
+Alice wanted to polish and it was shiny so Bob got the cloth
+Alice wanted to plant and it was hard so Bob got the shovel
+Alice wanted to plant and it was soft so Bob got the shovel
+The alarm sounded and the smoke detector was triggered so the building was evacuated
+The alarm sounded and the smoke detector was dysfunctional so the building was evacuated
+She won the lottery and inherited the estate so she became wealthy
+She lost the lottery and inherited the estate so she became wealthy
+The plant got enough sunlight and received adequate fertilizer so it grew
+The plant got enough sunlight and received insufficient fertilizer so it grew
+The temperature dropped below freezing and the heater failed so the pipes froze
+The temperature dropped below freezing and the heater worked so the pipes froze
+She studied frequently and she was smart so her grades were good
+She studied rarely and she was smart so her grades were good
+The bridge fell and the road flooded so traffic was diverted
+The bridge stood and the road flooded so traffic was diverted
+He apologized sincerely and brought flowers so he was forgiven
+He apologized jokingly and brought flowers so he was forgiven
+The medication worked and the immune system fought it off so the infection cleared
+The medication failed and the immune system fought it off so the infection cleared
+It rained heavily and the dam broke so the valley flooded
+It rained negligibly and the dam broke so the valley flooded
+The wire was cut and the fuse blew so the power was out
+The wire was fixed and the fuse blew so the power was out
+The evidence was inconclusive and the witness recanted so the case was dismissed
+The evidence was incriminating and the witness recanted so the case was dismissed
+The tire was flat and the engine died so the car stopped
+The tire was fixed and the engine died so the car stopped
+The treaty was signed and the war concluded so peace was established
+The treaty was signed and the war persisted so peace was established
+He practiced frequently and hired a coach so his tennis game improved
+He practiced rarely and hired a coach so his tennis game improved
+The storm intensified and the levee failed so the city was evacuated
+The storm intensified and the levee held so the city was evacuated
+She took the medicine and got bed rest so her fever broke
+She took the medicine and got no rest so her fever broke
+The stock price crashed and the scandal broke so investors panicked
+The stock price increased and the scandal broke so investors panicked
+The crops withered and the supply chain broke so food prices soared
+The crops grew and the supply chain broke so food prices soared
+She trained harder and improved her technique so she broke the record
+She trained harder and neglected her technique so she broke the record
+The lock was picked and the window was broken so the thief entered
+The lock was picked and the window was fixed so the thief entered
+He quit smoking and started exercising so his health improved
+He started smoking and started exercising so his health improved
+The temperature rose and humidity increased so the discomfort worsened
+The temperature rose and humidity lowered so the discomfort worsened
+The petition succeeded and the lawsuit was won so the law was changed
+The petition succeeded and the lawsuit was lost so the law was changed
+The connection was lost and the server crashed so the website went down
+The connection was found and the server crashed so the website went down
+She earned a scholarship and got financial aid so it was affordable
+She earned a scholarship and no financial aid so it was affordable
+The valve opened and the pressure exceeded limits so steam escaped
+The valve closed and the pressure exceeded limits so steam escaped
+The vaccine was invented and herd immunity was reached so the pandemic ended
+The vaccine was ineffective and herd immunity was reached so the pandemic ended
+The button was pressed and the voice command was given so the app launched
+The button was broken and the voice command was given so the app launched
+The market crashed and the currency devalued so the economy suffered
+The market grew and the currency devalued so the economy suffered
+She networked effectively and her work went viral so her career was successful
+She networked poorly and her work went viral so her career was successful
+The sensor detected motion and the timer activated so the lights turned on
+The sensor detected nothing and the timer activated so the lights turned on
+The antidote was administered and the toxin wore off so the patient recovered
+The antidote was withheld and the toxin wore off so the patient recovered
+The permit was approved and the regulation was repealed so construction began
+The permit was approved and the regulation was enforced so construction began

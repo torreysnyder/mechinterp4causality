@@ -1,0 +1,114 @@
+If Alice wants to cook and it is cold then Bob will get the firewood
+If Alice wants to cook and it is hot then Bob will get the firewood
+If Alice wants to read and it is dark then Bob will get the lantern
+If Alice wants to read and it is bright then Bob will get the lantern
+If Alice wants to paint and it is messy then Bob will get the tarp
+If Alice wants to paint and it is tidy then Bob will get the tarp
+If Alice wants to sleep and it is loud then Bob will get the earplugs
+If Alice wants to sleep and it is silent then Bob will get the earplugs
+If Alice wants to write and it is dim then Bob will get the lamp
+If Alice wants to write and it is bright then Bob will get the lamp
+If Alice wants to study and it is noisy then Bob will get the headphones
+If Alice wants to study and it is silent then Bob will get the headphones
+If Alice wants to camp and it is rainy then Bob will get the tent
+If Alice wants to camp and it is sunny then Bob will get the tent
+If Alice wants to climb and it is high then Bob will get the rope
+If Alice wants to climb and it is low then Bob will get the rope
+If Alice wants to sew and it is torn then Bob will get the needle
+If Alice wants to sew and it is fixed then Bob will get the needle
+If Alice wants to clean and it is messy then Bob will get the mop
+If Alice wants to clean and it is tidy then Bob will get the mop
+If Alice wants to hike and it is muddy then Bob will get the boots
+If Alice wants to hike and it is paved then Bob will get the boots
+If Alice wants to rest and it is stiff then Bob will get the pillow
+If Alice wants to rest and it is comfortable then Bob will get the pillow
+If Alice wants to sail and it is choppy then Bob will get the vest
+If Alice wants to sail and it is calm then Bob will get the vest
+If Alice wants to run and it is wet then Bob will get the shoes
+If Alice wants to run and it is dry then Bob will get the shoes
+If Alice wants to build and it is broken then Bob will get the tools
+If Alice wants to build and it is fixed then Bob will get the tools
+If Alice wants to organize and it is chaotic then Bob will get the boxes
+If Alice wants to organize and it is tidy then Bob will get the boxes
+If Alice wants to knit and it is cold then Bob will get the yarn
+If Alice wants to knit and it is warm then Bob will get the yarn
+If Alice wants to sing and it is silent then Bob will get the microphone
+If Alice wants to sing and it is noisy then Bob will get the microphone
+If Alice wants to carve and it is rough then Bob will get the knife
+If Alice wants to carve and it is soft then Bob will get the knife
+If Alice wants to drink and it is hot then Bob will get the water
+If Alice wants to drink and it is cold then Bob will get the water
+If Alice wants to decorate and it is plain then Bob will get the ornaments
+If Alice wants to decorate and it is pretty then Bob will get the ornaments
+If Alice wants to measure and it is long then Bob will get the tape
+If Alice wants to measure and it is short then Bob will get the tape
+If Alice wants to polish and it is dull then Bob will get the cloth
+If Alice wants to polish and it is shiny then Bob will get the cloth
+If Alice wants to plant and it is hard then Bob will get the shovel
+If Alice wants to plant and it is soft then Bob will get the shovel
+If the alarm sounds and the smoke detector is triggered then the building will be evacuated
+If the alarm sounds and the smoke detector is dysfunctional then the building will be evacuated
+If she wins the lottery and inherits the estate then she will become wealthy
+If she loses the lottery and inherits the estate then she will become wealthy
+If the plant gets enough sunlight and receives adequate fertilizer then it will grow
+If the plant gets enough sunlight and receives insufficient fertilizer then it will grow
+If the temperature drops below freezing and the heater fails then the pipes will freeze
+If the temperature drops below freezing and the heater works then the pipes will freeze
+If she studies frequently and she is smart then her grades will be good
+If she studies rarely and she is smart then her grades will be good
+If the bridge falls and the road floods then traffic will be diverted
+If the bridge stands and the road floods then traffic will be diverted
+If he apologizes sincerely and brings flowers then he will be forgiven
+If he apologizes jokingly and brings flowers then he will be forgiven
+If the medication works and the immune system fights it off then the infection will clear
+If the medication fails and the immune system fights it off then the infection will clear
+If it rains heavily and the dam breaks then the valley will flood
+If it rains negligibly and the dam breaks then the valley will flood
+If the wire is cut and the fuse blows then the power will be out
+If the wire is fixed and the fuse blows then the power will be out
+If the evidence is inconclusive and the witness recants then the case will be dismissed
+If the evidence is incriminating and the witness recants then the case will be dismissed
+If the tire is flat and the engine dies then the car will stop
+If the tire is fixed and the engine dies then the car will stop
+If the treaty is signed and the war concludes then peace will be established
+If the treaty is signed and the war persists then peace will be established
+If he practices frequently and hires a coach then his tennis game will improve
+If he practices rarely and hires a coach then his tennis game will improve
+If the storm intensifies and the levee fails then the city will be evacuated
+If the storm intensifies and the levee holds then the city will be evacuated
+If she takes the medicine and gets bed rest then her fever will break
+If she takes the medicine and gets no rest then her fever will break
+If the stock price crashes and the scandal breaks then investors will panic
+If the stock price increases and the scandal breaks then investors will panic
+If the crops wither and the supply chain breaks then food prices will soar
+If the crops grow and the supply chain breaks then food prices will soar
+If she trains harder and improves her technique then she will break the record
+If she trains harder and neglects her technique then she will break the record
+If the lock is picked and the window is broken then the thief will enter
+If the lock is picked and the window is fixed then the thief will enter
+If he quits smoking and starts exercising then his health will improve
+If he starts smoking and starts exercising then his health will improve
+If the temperature rises and humidity increases then the discomfort will worsen
+If the temperature rises and humidity lowers then the discomfort will worsen
+If the petition succeeds and the lawsuit is won then the law will be changed
+If the petition succeeds and the lawsuit is lost then the law will be changed
+If the connection is lost and the server crashes then the website will go down
+If the connection is found and the server crashes then the website will go down
+If she earns a scholarship and gets financial aid then it will be affordable
+If she earns a scholarship and no financial aid then it will be affordable
+If the valve opens and the pressure exceeds limits then steam will escape
+If the valve closes and the pressure exceeds limits then steam will escape
+If the vaccine is invented and herd immunity is reached then the pandemic will end
+If the vaccine is ineffective and herd immunity is reached then the pandemic will end
+If the button is pressed and the voice command is given then the app will launch
+If the button is broken and the voice command is given then the app will launch
+If the market crashes and the currency devalues then the economy will suffer
+If the market grows and the currency devalues then the economy will suffer
+If she networks effectively and her work goes viral then her career will be successful
+If she networks poorly and her work goes viral then her career will be successful
+If the sensor detects motion and the timer activates then the lights will turn on
+If the sensor detects nothing and the timer activates then the lights will turn on
+If the antidote is administered and the toxin wears off then the patient will recover
+If the antidote is withheld and the toxin wears off then the patient will recover
+If the permit is approved and the regulation is repealed then construction will begin
+If the permit is approved and the regulation is enforced then construction will begin
