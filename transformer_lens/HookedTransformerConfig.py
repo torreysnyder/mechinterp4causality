@@ -15,8 +15,8 @@ from typing import Any, Dict, List, Optional, Union
 import numpy as np
 import torch
 
-import utils
-from utilities.activation_functions import SUPPORTED_ACTIVATIONS
+from transformer_lens import utils
+from transformer_lens.utilities.activation_functions import SUPPORTED_ACTIVATIONS
 
 
 @dataclass
