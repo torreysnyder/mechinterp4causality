@@ -1,0 +1,9 @@
+name: hooked_transformer_deep
+hooked_transformer:
+  n_layers: 12
+  n_heads: 8
+  d_model: 512
+  d_head: 64
+  d_mlp: 2048
+  act_fn: gelu
+  normalization_type: LNPre

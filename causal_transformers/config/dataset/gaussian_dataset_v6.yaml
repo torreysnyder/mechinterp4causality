@@ -1,0 +1,39 @@
+defaults:
+  - dataset
+type: "gaussian"
+name: "gaussian_dataset_v6"
+world:
+  n_worlds: 59049
+  n_nodes:
+    min: 4
+    max: 4
+  weights: [-1, 0, 1]
+  noise_var: 0.1
+intervention_interval: [-5, 5]
+observation_interval: [-5, 5]
+value_encoding:
+  range: [-10, 10]
+  steps: 201
+  decimal_points: 1
+dynamic: True
+data_examples:
+  n_valid_worlds: 1000
+  n_test_worlds: 1000
+  n_interventions: [0, 1, 2]
+  sample: True
+  permute_variable_order: True
+  single_variable: False
+  n_reps: 10
+inference_examples:
+  n_valid_worlds: 1000
+  n_observations: [1, 2]
+  n_interventions: [0, 1, 2]
+  permute_variable_order: True
+  single_variable: False
+  n_worlds_held_out: 1000
+  n_reps: 10
+names:
+  scm_code_width: 4
+  scm_name_zero_pad: 4
+  node_name_zero_pad: 1
+remap_variable_names: False

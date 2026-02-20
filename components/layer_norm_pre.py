@@ -9,7 +9,7 @@ import torch.nn as nn
 from jaxtyping import Float
 
 from hook_points import HookPoint
-from hooked_tranformer_config import HookedTransformerConfig
+from transformer_lens.HookedTransformerConfig import HookedTransformerConfig
 
 
 # LayerNormPre

@@ -1,5 +1,7 @@
 from .dataset_utils import get_d_vocab, get_n_ctx
-from hooked_transformer import HookedTransformer, HookedTransformerConfig
+from transformer_lens.HookedTransformer import HookedTransformer
+from transformer_lens.HookedTransformerConfig import HookedTransformerConfig
+
 
 def get_hooked_transformer_model(cfg, device):
     d_vocab = get_d_vocab(cfg)

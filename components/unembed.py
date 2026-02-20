@@ -9,8 +9,8 @@ import torch
 import torch.nn as nn
 from jaxtyping import Float
 
-from hooked_tranformer_config import HookedTransformerConfig
-from utilities.addmm import batch_addmm
+from transformer_lens.HookedTransformerConfig import HookedTransformerConfig
+from transformer_lens.utilities.addmm import batch_addmm
 
 
 class Unembed(nn.Module):

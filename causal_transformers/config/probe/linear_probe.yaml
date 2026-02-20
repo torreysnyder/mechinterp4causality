@@ -1,0 +1,17 @@
+name: linear_probe
+mlp:
+  n_layers: 1
+  hidden: None
+transformer: None
+train:
+  instance: 0
+  batch_size: 128
+  n_epochs: 20
+  adam:
+    lr: 0.001
+    weight_decay: 0.0
+    eps: 1e-8
+    betas: [0.9, 0.99]
+  num_workers: 8
+  tensorboard: True
+token_types: ["scm_last"]

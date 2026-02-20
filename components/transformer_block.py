@@ -19,7 +19,7 @@ from components.rms_norm_pre import RMSNormPre
 from components.mlps.can_be_used_as_mlp import CanBeUsedAsMLP
 from factories.mlp_factory import MLPFactory
 from hook_points import HookPoint
-from hooked_tranformer_config import HookedTransformerConfig
+from transformer_lens.HookedTransformerConfig import HookedTransformerConfig
 from past_key_value_caching import HookedTransformerKeyValueCacheEntry
 from utils import repeat_along_head_dimension
 

@@ -40,29 +40,28 @@ from transformers.models.auto.tokenization_auto import AutoTokenizer
 from transformers.tokenization_utils_base import PreTrainedTokenizerBase
 from typing_extensions import Literal
 
-import transformer_lens.loading_from_pretrained as loading
-import transformer_lens.utils as utils
-from transformer_lens.ActivationCache import ActivationCache
-from transformer_lens.components import (
-    Embed,
-    LayerNorm,
-    LayerNormPre,
-    PosEmbed,
-    RMSNorm,
-    RMSNormPre,
-    TransformerBlock,
-    Unembed,
-)
-from transformer_lens.FactoredMatrix import FactoredMatrix
-from transformer_lens.hook_points import HookedRootModule, HookPoint
+import loading_from_pretrained as loading
+import utils
+from activation_cache import ActivationCache
+
+from components.embed import Embed
+from components.layer_norm import LayerNorm
+from components.layer_norm_pre import LayerNormPre
+from components.pos_embed import PosEmbed
+from components.rms_norm import RMSNorm
+from components.rms_norm_pre import RMSNormPre
+from components.transformer_block import TransformerBlock
+from components.unembed import Unembed
+from factored_matrix import FactoredMatrix
+from hook_points import HookedRootModule, HookPoint
 from transformer_lens.HookedTransformerConfig import HookedTransformerConfig
-from transformer_lens.loading_from_pretrained import NON_HF_HOSTED_MODEL_NAMES
+from loading_from_pretrained import NON_HF_HOSTED_MODEL_NAMES
 
 # Note - activation cache is used with run_with_cache, past_key_value_caching is used for
 # generation.
-from transformer_lens.past_key_value_caching import HookedTransformerKeyValueCache
+from past_key_value_caching import HookedTransformerKeyValueCache
 from transformer_lens.utilities import devices
-from transformer_lens.utils import (
+from utils import (
     USE_DEFAULT_VALUE,
     init_kaiming_normal_,
     init_kaiming_uniform_,

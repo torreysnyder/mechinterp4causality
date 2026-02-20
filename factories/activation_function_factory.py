@@ -3,8 +3,8 @@
 Centralized location for selection supported activation functions throughout TransformerLens
 """
 
-from hooked_tranformer_config import HookedTransformerConfig
-from utilities.activation_functions import (
+from transformer_lens.HookedTransformerConfig import HookedTransformerConfig
+from transformer_lens.utilities.activation_functions import (
     SUPPORTED_ACTIVATIONS,
     ActivationFunction,
 )

@@ -9,7 +9,7 @@ import torch
 import torch.nn as nn
 from jaxtyping import Float, Int
 
-from hooked_tranformer_config import HookedTransformerConfig
+from transformer_lens.HookedTransformerConfig import HookedTransformerConfig
 from utils import get_offset_position_ids
 
 

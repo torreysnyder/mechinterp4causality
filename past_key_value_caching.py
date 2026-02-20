@@ -10,8 +10,8 @@ from typing import List, Union
 import torch
 from jaxtyping import Float, Int
 
-from hooked_tranformer_config import HookedTransformerConfig
-from utilities.devices import get_device_for_block_index
+from transformer_lens.HookedTransformerConfig import HookedTransformerConfig
+from transformer_lens.utilities.devices import get_device_for_block_index
 
 
 @dataclass

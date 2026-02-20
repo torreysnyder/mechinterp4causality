@@ -1,12 +1,9 @@
-import os, re, json
+import os
 import torch, numpy
 from collections import defaultdict
-from utilities import nethook
 
 from causal_trace import (
     ModelAndTokenizer,
-    layername,
-    plot_trace_heatmap,
     make_inputs,
     decode_tokens,
 )

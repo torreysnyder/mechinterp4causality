@@ -14,7 +14,7 @@ from transformers import(
     T5ForConditionalGeneration,
 )
 import utils as utils
-from hooked_tranformer_config import HookedTransformerConfig
+from transformer_lens import HookedTransformerConfig
 from pretrained_weight_conversions_gpt2 import convert_gpt2_weights
 OFFICIAL_MODEL_NAMES = [
     "gpt2",

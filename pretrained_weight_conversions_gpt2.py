@@ -1,7 +1,7 @@
 import einops
 import torch
 
-from hooked_tranformer_config import HookedTransformerConfig
+from transformer_lens import HookedTransformerConfig
 
 
 def convert_gpt2_weights(gpt2, cfg: HookedTransformerConfig):

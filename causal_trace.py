@@ -1,17 +1,12 @@
-import argparse
-import json
 import os
 import re
-from collections import defaultdict
 
-import numpy
 import torch
 
 from matplotlib import pyplot as plt
-from tqdm import tqdm
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-from utilities import nethook
+from transformer_lens.utilities import nethook
 
 
 class ModelAndTokenizer:
@@ -67,7 +62,7 @@ class ModelAndTokenizer:
         self.layer_names = [
             n
             for n, m in model.named_modules()
-            if (re.match(r"^(transformer|gpt_neox)\.(h|layers)\.\d+$", n))
+            if (re.match(r"^(transformer|gpt_neox)\.(h|layers)\.\d+$", n) or re.match(r"^blocks\.\d+$", n))
         ]
         self.num_layers = len(self.layer_names)
 
@@ -81,35 +76,47 @@ class ModelAndTokenizer:
 
 
 def layername(model, num, kind=None):
-    """
-    Generate the module name for a specific layer in the model.
+    # Unwrap DataParallel / DDP if present
+    while hasattr(model, "module"):
+        model = model.module
 
-    This function constructs the correct module path based on the model architecture
-    (GPT-2 vs GPT-NeoX) and the component type (embedding, MLP, attention, or full layer).
+    # -----------------------
+    # TransformerLens HookedTransformer (your case)
+    # -----------------------
+    # HookedTransformer has modules like:
+    #   embed, pos_embed, blocks.{i}.attn, blocks.{i}.mlp, unembed
+    if hasattr(model, "blocks") and hasattr(model, "embed"):
+        if kind == "embed":
+            return "embed"
+        if kind in (None, "None"):
+            return f"blocks.{num}"
+        if kind == "attn":
+            return f"blocks.{num}.attn"
+        if kind == "mlp":
+            return f"blocks.{num}.mlp"
+        return f"blocks.{num}.{kind}"
 
-    Args:
-        model: The transformer model
-        num: Layer number (0-indexed)
-        kind: Component type - None (full layer), "embed" (embedding), "mlp", or "attn"
-
-    Returns:
-        String path to the module (e.g., "transformer.h.5.mlp")
-    """
-    # Handle GPT-2 style models (transformer.h.X)
+    # -----------------------
+    # HuggingFace GPT-2
+    # -----------------------
     if hasattr(model, "transformer"):
         if kind == "embed":
-            return "transformer.wte"  # Word token embeddings
+            return "transformer.wte"
         return f'transformer.h.{num}{"" if kind is None else "." + kind}'
 
-    # Handle GPT-NeoX style models (gpt_neox.layers.X)
+    # -----------------------
+    # HuggingFace GPT-NeoX
+    # -----------------------
     if hasattr(model, "gpt_neox"):
         if kind == "embed":
-            return "gpt_neox.embed_in"  # Input embeddings
+            return "gpt_neox.embed_in"
         if kind == "attn":
-            kind = "attention"  # GPT-NeoX uses "attention" instead of "attn"
+            kind = "attention"
         return f'gpt_neox.layers.{num}{"" if kind is None else "." + kind}'
 
-    assert False, "unknown transformer structure"
+    raise AssertionError("unknown transformer structure")
+
+
 
 
 def guess_subject(prompt):
@@ -230,33 +237,60 @@ def make_inputs(tokenizer, prompts, device="cuda"):
     """
     Convert text prompts into padded token tensors suitable for batch processing.
 
-    Tokenizes prompts and pads them to the same length for efficient batch processing.
-    Creates attention masks to indicate which positions are real tokens vs padding.
+    Supports both:
+      - Preprocessor (whitespace tokenization + vocab dict)
+      - HuggingFace tokenizers (encode)
 
-    Args:
-        tokenizer: HuggingFace tokenizer instance
-        prompts: List of text strings to tokenize
-        device: Target device for tensors (default: "cuda")
-
-    Returns:
-        Dictionary with:
-        - input_ids: Padded token ID tensor [batch_size, max_length]
-        - attention_mask: Binary mask [batch_size, max_length] (1=real token, 0=padding)
+    Returns dict with:
+      - input_ids: [batch, max_len]
+      - attention_mask: [batch, max_len]
     """
-    # Tokenize all prompts
+    # --- Preprocessor path ---------------------------------------------------
+    is_preproc = (
+        hasattr(tokenizer, "tokenize")
+        and hasattr(tokenizer, "vocab")
+        and isinstance(getattr(tokenizer, "vocab"), dict)
+    )
+    if is_preproc:
+        token_lists = []
+        for p in prompts:
+            toks = tokenizer.tokenize(p)
+            try:
+                ids = [tokenizer.vocab[t] for t in toks]
+            except KeyError as e:
+                missing = [t for t in toks if t not in tokenizer.vocab]
+                raise KeyError(
+                    f"Unknown token(s) in Preprocessor vocab: {missing}. "
+                    "Check dataset.value_encoding range/steps and numeric formatting."
+                ) from e
+            token_lists.append(ids)
+
+        maxlen = max(len(t) for t in token_lists) if token_lists else 0
+        pad_id = tokenizer.vocab.get("PAD", 0)
+
+        # Left-pad sequences to max length (matches original behavior)
+        input_ids = [[pad_id] * (maxlen - len(t)) + t for t in token_lists]
+        attention_mask = [[0] * (maxlen - len(t)) + [1] * len(t) for t in token_lists]
+
+        return dict(
+            input_ids=torch.tensor(input_ids).to(device),
+            attention_mask=torch.tensor(attention_mask).to(device),
+        )
+
+    # --- HuggingFace path (original) ----------------------------------------
     token_lists = [tokenizer.encode(p) for p in prompts]
     maxlen = max(len(t) for t in token_lists)
 
-    # Determine padding token ID
-    if "[PAD]" in tokenizer.all_special_tokens:
+    if hasattr(tokenizer, 'pad_token_id') and tokenizer.pad_token_id is not None:
+        pad_id = tokenizer.pad_token_id
+    elif hasattr(tokenizer, 'eos_token_id') and tokenizer.eos_token_id is not None:
+        pad_id = tokenizer.eos_token_id
+    elif "[PAD]" in getattr(tokenizer, "all_special_tokens", []):
         pad_id = tokenizer.all_special_ids[tokenizer.all_special_tokens.index("[PAD]")]
     else:
-        pad_id = 0  # Default to 0 if no PAD token exists
+        pad_id = 0
 
-    # Left-pad sequences to max length
     input_ids = [[pad_id] * (maxlen - len(t)) + t for t in token_lists]
-
-    # Create attention mask (0 for padding, 1 for real tokens)
     attention_mask = [[0] * (maxlen - len(t)) + [1] * len(t) for t in token_lists]
 
     return dict(
@@ -267,23 +301,26 @@ def make_inputs(tokenizer, prompts, device="cuda"):
 
 def decode_tokens(tokenizer, token_array):
     """
-    Decode token IDs back to text strings.
+    Decode token IDs back to token strings.
 
-    Handles both 1D arrays (single sequence) and 2D arrays (batch of sequences).
-    Each token is decoded individually to preserve token boundaries.
-
-    Args:
-        tokenizer: HuggingFace tokenizer instance
-        token_array: 1D or 2D array of token IDs
-
-    Returns:
-        List of decoded token strings, or list of lists for 2D input
+    Supports both:
+      - Preprocessor: direct vocab_inv lookup
+      - HuggingFace tokenizers: tokenizer.decode([t])
     """
     if hasattr(token_array, "shape") and len(token_array.shape) > 1:
-        # Recursively handle batch dimension
         return [decode_tokens(tokenizer, row) for row in token_array]
-    # Decode each token separately to maintain boundaries
-    return [tokenizer.decode([t]) for t in token_array]
+
+    # --- Preprocessor path ---------------------------------------------------
+    is_preproc = hasattr(tokenizer, "vocab_inv") and isinstance(getattr(tokenizer, "vocab_inv"), dict)
+    if is_preproc:
+        out = []
+        for t in token_array:
+            tid = int(t.item()) if hasattr(t, "item") else int(t)
+            out.append(tokenizer.vocab_inv.get(tid, f"<UNK_ID:{tid}>"))
+        return out
+
+    # --- HuggingFace path ----------------------------------------------------
+    return [tokenizer.decode([int(t)]) for t in token_array]
 
 
 def find_token_range(tokenizer, token_array, substring):

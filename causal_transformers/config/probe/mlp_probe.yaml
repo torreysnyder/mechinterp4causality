@@ -1,0 +1,8 @@
+defaults:
+  - linear_probe
+name: mlp_probe
+mlp:
+  n_layers: 2
+  hidden: 256
+train:
+  n_epochs: 40

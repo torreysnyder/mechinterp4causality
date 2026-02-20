@@ -7,7 +7,7 @@ from components.mlps.gated_mlp import GatedMLP
 from components.mlps.gated_mlp_4bit import GatedMLP4Bit
 from components.mlps.mlp import MLP
 from components.mlps.moe import MoE
-from hooked_tranformer_config import HookedTransformerConfig
+from transformer_lens.HookedTransformerConfig import HookedTransformerConfig
 
 
 class MLPFactory:

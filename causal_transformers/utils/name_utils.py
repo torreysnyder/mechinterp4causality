@@ -1,7 +1,5 @@
 import numpy as np
 import string
-from causal_transformers.utils import ROOT_DIR, DATASETS_DIR
-from causal_transformers.utils.dataset_utils import load_worlds
 import torch
 
 
@@ -51,14 +49,4 @@ def get_remapped_node_name(cfg, world_index, node_index):
     return node_name
 
 
-def load_node_remap(cfg):
-    node_remap_path = DATASETS_DIR / cfg.dataset.name / "worlds" / "node_remap.pth"
-    if node_remap_path.exists():
-        node_remap = torch.load(node_remap_path, weights_only=True)
-    else:
-        node_remap = torch.zeros((cfg.dataset.world.n_worlds, cfg.dataset.world.n_nodes.max), dtype=torch.int32)
-        worlds = load_worlds(cfg)
-        for world_index in range(len(worlds)):
-            node_remap[world_index] = torch.tensor([reproducible_node_index_remap(cfg, world_index, node_index) for node_index in range(cfg.dataset.wrold.n_nodes.max)])
-        torch.save(node_remap, node_remap_path)
-    return node_remap
+

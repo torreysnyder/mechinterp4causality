@@ -4,10 +4,10 @@ import torch
 import torch.nn as nn
 from jaxtyping import Float
 
-from transformer_lens.components import AbstractAttention
+from components.abstract_attention import AbstractAttention
 from components.rms_norm import RMSNorm
-from hooked_tranformer_config import HookedTransformerConfig
-from utilities.attention import complex_attn_linear, simple_attn_linear
+from transformer_lens.HookedTransformerConfig import HookedTransformerConfig
+from transformer_lens.utilities.attention import complex_attn_linear, simple_attn_linear
 
 
 class GroupedQueryAttention(AbstractAttention):

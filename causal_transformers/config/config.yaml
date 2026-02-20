@@ -1,0 +1,10 @@
+defaults:
+  - _self_
+  - dataset: gaussian_dataset_v6
+  - model: deep_model
+  - train: train
+  - probe: linear_probe
+experiment_name: gaussian
+seed: 0
+checkpoint_epoch: -1
+checkpoint_elements: []

@@ -10,7 +10,7 @@ from factories.activation_function_factory import (
     ActivationFunctionFactory,
 )
 from hook_points import HookPoint
-from hooked_tranformer_config import HookedTransformerConfig
+from transformer_lens.HookedTransformerConfig import HookedTransformerConfig
 
 
 class MoEGatedMLP(nn.Module):
