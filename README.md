@@ -27,7 +27,7 @@ This project applies **causal tracing** and **ablation patching** to probe the i
 ## Scripts
 
 ### `fine_tune.py`
-Fine-tunes **GPT-2-small** on a causal reasoning dataset. This script handles training configuration, tokenization, and model checkpointing.
+Fine-tunes **GPT-2-small** on a causal reasoning dataset.
 
 **Usage:**
 ```bash
@@ -37,7 +37,7 @@ python fine_tune.py
 ---
 
 ### `causal_transformers/dataset/causal_dataset_gaussian.py`
-Generates **clean and corrupt prompt pairs** used in ablation patching experiments. Clean prompts contain valid causal structure, while corrupt prompts are perturbed via Gaussian noise to serve as counterfactual baselines.
+Generates **clean and corrupt prompt pairs** used in ablation patching experiments. Clean prompts contain valid causal structure, while corrupt prompts are perturbed via token substitution to serve as counterfactual baselines.
 
 **Usage:**
 ```bash
@@ -47,7 +47,7 @@ python causal_transformers/dataset/causal_dataset_gaussian.py
 ---
 
 ### `Inference_via_next_token_prediction.py`
-Appends a **target token** to each prompt and runs inference via next-token prediction. This script prepares inputs for the patching pipeline by collecting logit distributions over candidate causal tokens.
+Runs inference via next-token prediction and appends this predicted target token to end of prompts. This script prepares input prompts for the patching pipeline.
 
 **Usage:**
 ```bash
