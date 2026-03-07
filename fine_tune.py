@@ -1,3 +1,4 @@
+# Code adapted from eivinasbutkus/causal-discovery-and-inference-through-next-token-prediction
 import torch
 import torch.nn as nn
 import torch.optim as optim
