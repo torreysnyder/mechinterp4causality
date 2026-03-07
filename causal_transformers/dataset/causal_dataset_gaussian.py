@@ -1,3 +1,4 @@
+# Code adapted from eivinasbutkus/causal-discovery-and-inference-through-next-token-prediction
 import torch
 from torch.utils.data import Dataset
 import causal_transformers as ct
