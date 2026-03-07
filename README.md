@@ -78,37 +78,4 @@ Inference_via_next_token_prediction.py   →   prompts with target token appende
 activation_patching.py   →   causal tracing results
 ```
 
----
 
-## Requirements
-
-Install dependencies via:
-
-```bash
-pip install -r requirements.txt
-```
-
-Key dependencies include:
-- `transformers`
-- `torch`
-- `numpy`
-- `datasets`
-
----
-
-## Citation
-
-If you use this code in your research, please cite:
-
-```bibtex
-@misc{causal_tracing_llms,
-  title     = {Exploring Causal Reasoning in Large Language Models via Causal Tracing},
-  year      = {2025},
-}
-```
-
----
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
